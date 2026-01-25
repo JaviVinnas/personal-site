@@ -1,0 +1,51 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="py-10 border-t border-border">
+  <div class="container-main">
+    <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+      <!-- Left side -->
+      <div class="flex items-center gap-3 text-body-sm text-muted">
+        <span>© {currentYear} Javier Rodríguez Viñas</span>
+      </div>
+
+      <!-- Right side -->
+      <div class="flex items-center gap-2 text-body-sm text-muted">
+        <span>Crafted with</span>
+        <a
+          href="https://astro.build"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1 hover:text-accent transition-colors duration-150"
+        >
+          <svg class="w-4 h-4" viewBox="0 0 128 128" fill="currentColor">
+            <path
+              d="M50.4 78.5a75.1 75.1 0 0 0-28.5 6.9l24.2-65.7c.7-2 1.9-3.2 3.4-3.2h29c1.5 0 2.7 1.2 3.4 3.2l24.2 65.7s-11.6-7-28.5-7L67 45.5c-.4-1.7-1.6-2.8-2.9-2.8-1.3 0-2.5 1.1-2.9 2.7L50.4 78.5z"
+            ></path>
+            <path
+              d="M93.2 93.7c-2.1 6.1-10.4 10.3-19.9 10.3-12.8 0-22.9-7.3-22.9-16.4 0-3.6 1.5-6.9 4.2-9.5 2.7-2.6 6.5-4.5 10.9-5.3 4.4-.8 9.1-.6 13.3.7 4.2 1.3 7.8 3.5 10.3 6.3 2.5 2.8 3.8 6.2 3.8 9.8 0 1.4-.2 2.8-.7 4.1z"
+              fill-opacity=".3"></path>
+          </svg>
+          Astro
+        </a>
+        <span class="text-border">+</span>
+        <a
+          href="https://tailwindcss.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-accent transition-colors duration-150"
+        >
+          Tailwind
+        </a>
+      </div>
+    </div>
+
+    <!-- Easter egg -->
+    <p
+      class="mt-6 text-center text-label opacity-30 select-none cursor-default hover:opacity-70 transition-opacity duration-500"
+    >
+      // May your code compile on the first try
+    </p>
+  </div>
+</footer>

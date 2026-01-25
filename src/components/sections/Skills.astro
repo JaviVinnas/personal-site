@@ -1,0 +1,49 @@
+---
+import { skillCategories } from "../../data/content";
+import SkillBadge from "../ui/SkillBadge.astro";
+
+// Map original accent to new simplified accents
+const accentMap: Record<string, "blue" | "warm" | "neutral"> = {
+  blue: "blue",
+  terracotta: "warm",
+  gold: "warm",
+};
+---
+
+<section id="skills" class="section-padding">
+  <div class="container-main">
+    <!-- Label -->
+    <p class="text-label mb-4 will-animate animate-fade-in-up">Skills</p>
+
+    <!-- Heading -->
+    <h2
+      class="text-heading text-primary will-animate animate-fade-in-up delay-100"
+    >
+      Technical Toolkit
+    </h2>
+
+    <div class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        skillCategories.map((category, categoryIndex) => (
+          <div
+            class="will-animate animate-fade-in-up"
+            style={`animation-delay: ${150 + categoryIndex * 75}ms`}
+          >
+            <h3 class="text-label mb-4 pb-2 border-b border-border">
+              {category.name}
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              {category.skills.map((skill, skillIndex) => (
+                <SkillBadge
+                  skill={skill}
+                  accent={accentMap[category.accent || ""] || "neutral"}
+                  delay={150 + categoryIndex * 75 + skillIndex * 30}
+                />
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

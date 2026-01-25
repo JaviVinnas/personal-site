@@ -1,0 +1,91 @@
+---
+import type { Experience } from "../../data/content";
+
+interface Props {
+  experience: Experience;
+  index: number;
+  isLast?: boolean;
+}
+
+const { experience, index, isLast = false } = Astro.props;
+const delay = 200 + index * 150;
+---
+
+<article
+  class="timeline-item grid gap-4 md:gap-8 will-animate animate-fade-in-up"
+  style={`animation-delay: ${delay}ms`}
+>
+  <!-- Timeline visual (left column on desktop) -->
+  <div class="timeline-visual hidden md:flex flex-col items-center">
+    <!-- Line -->
+    <div class={`w-px h-4 ${index === 0 ? "bg-bg-subtle" : "bg-border"}`}></div>
+    <!-- Node -->
+    <div class="size-3 rounded-full border-2 border-accent bg-border shrink-0">
+    </div>
+    <!-- Line -->
+    {!isLast && <div class="w-px flex-1 bg-border" />}
+  </div>
+
+  <!-- Content -->
+  <div class="timeline-content pb-10 md:pb-12">
+    <!-- Mobile timeline indicator -->
+    <div class="flex items-center gap-3 mb-3 md:hidden">
+      <div class="w-2.5 h-2.5 rounded-full border-2 border-accent bg-border">
+      </div>
+      <span class="text-label">{experience.period}</span>
+    </div>
+
+    <!-- Header -->
+    <div class="flex flex-col gap-1">
+      <div
+        class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 sm:gap-4"
+      >
+        <h3 class="text-subheading text-primary">{experience.role}</h3>
+        <span class="text-label hidden md:block">{experience.period}</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="font-mono text-body-sm text-accent"
+          >{experience.company}</span
+        >
+        <span class="text-muted">·</span>
+        <span class="text-body-sm text-muted">{experience.location}</span>
+      </div>
+    </div>
+
+    <!-- Description -->
+    <p class="text-body text-secondary mt-4 max-w-xl">
+      {experience.description}
+    </p>
+
+    <!-- Highlights -->
+    <ul class="mt-5 space-y-2.5">
+      {
+        experience.highlights.map((highlight, i) => (
+          <li
+            class="flex items-start gap-3 text-body-sm text-secondary will-animate animate-fade-in-left"
+            style={`animation-delay: ${delay + 100 + i * 50}ms`}
+          >
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-warm shrink-0" />
+            <span>{highlight}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</article>
+
+<style>
+  .timeline-item {
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 768px) {
+    .timeline-item {
+      grid-template-columns: 24px 1fr;
+    }
+  }
+
+  .timeline-visual {
+    position: relative;
+  }
+</style>
