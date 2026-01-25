@@ -2,7 +2,7 @@
 // Javier Rodríguez Viñas - Lead Frontend Engineer & UX Specialist
 
 export const personal = {
-  name: "Javier Rodríguez Viñas",
+  name: "Javier Rodríguez Viñas.",
   title: "Lead Frontend Engineer",
   subtitle: "Fullstack Engineer & UX Specialist",
   tagline: "Bridging design and code",
@@ -11,7 +11,7 @@ export const personal = {
   location: "Vigo, Spain",
   locationUrl: "https://maps.app.goo.gl/UJeRYwdfmHvyEmwm6",
   social: {
-    linkedin: "https://www.linkedin.com/in/javi-rodriguez-viñas",
+    linkedin: "https://www.linkedin.com/in/javi-rodriguez-vinas/",
     github: "https://github.com/JaviVinnas",
   },
 };
@@ -42,7 +42,7 @@ export const experiences: Experience[] = [
   {
     role: "Lead Frontend Engineer",
     company: "Sbayt",
-    companyUrl: "https://sbayt.com",
+    companyUrl: "https://sbayt.ai/es/",
     period: "November 2023 – Present",
     location: "Remote (A Coruña, ES)",
     type: "remote",

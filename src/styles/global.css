@@ -17,7 +17,7 @@
   --text-base: 1.125rem;  /* 18px - body default */
   --text-lg: 2.75rem;      /* 24px - subheadings */
   --text-xl: 4rem;      /* 40px - section titles (serif) */
-  --text-display: 6rem; /* 40-80px - hero */
+  --text-display: clamp(5.5rem, 5.25rem + 1vw, 6rem); 
 
   /* Color Palette - Light Mode (default) */
   --color-bg: hsl(45, 20%, 97%);
