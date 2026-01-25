@@ -3,11 +3,11 @@ import { skillCategories } from "../../data/content";
 import SkillBadge from "../ui/SkillBadge.astro";
 
 // Map original accent to new simplified accents
-const accentMap: Record<string, "blue" | "warm" | "neutral"> = {
-  blue: "blue",
-  terracotta: "warm",
-  gold: "warm",
-};
+// const accentMap: Record<string, "blue" | "warm" | "neutral"> = {
+//   blue: "blue",
+//   terracotta: "warm",
+//   gold: "warm",
+// };
 ---
 
 <section id="skills" class="section-padding">
@@ -36,7 +36,7 @@ const accentMap: Record<string, "blue" | "warm" | "neutral"> = {
               {category.skills.map((skill, skillIndex) => (
                 <SkillBadge
                   skill={skill}
-                  accent={accentMap[category.accent || ""] || "neutral"}
+                  accent={category.accent || "neutral"}
                   delay={150 + categoryIndex * 75 + skillIndex * 30}
                 />
               ))}

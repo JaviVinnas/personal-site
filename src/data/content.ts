@@ -93,7 +93,7 @@ export interface Skill {
 export interface SkillCategory {
   name: string;
   skills: (string | Skill)[];
-  accent?: "blue" | "terracotta" | "gold";
+  accent?: "blue" | "warm" | "neutral" | "pink" | "cyan" | "emerald" | "violet" | "amber";
 }
 
 export const skillCategories: SkillCategory[] = [
@@ -119,7 +119,7 @@ export const skillCategories: SkillCategory[] = [
       "CSS Modules",
       { name: "Rive", url: "https://rive.app" },
     ],
-    accent: "terracotta",
+    accent: "pink",
   },
   {
     name: "State & Data",
@@ -130,7 +130,7 @@ export const skillCategories: SkillCategory[] = [
       { name: "Zustand", url: "https://zustand.docs.pmnd.rs" },
       "Axios",
     ],
-    accent: "blue",
+    accent: "cyan",
   },
   {
     name: "Backend",
@@ -142,7 +142,7 @@ export const skillCategories: SkillCategory[] = [
       { name: "Prisma", url: "https://www.prisma.io" },
       { name: "DrizzleORM", url: "https://orm.drizzle.team" },
     ],
-    accent: "gold",
+    accent: "emerald",
   },
   {
     name: "Databases",
@@ -151,7 +151,7 @@ export const skillCategories: SkillCategory[] = [
       { name: "MongoDB", url: "https://www.mongodb.com" },
       { name: "MinIO", url: "https://min.io" },
     ],
-    accent: "gold",
+    accent: "violet",
   },
   {
     name: "Infrastructure",
@@ -161,7 +161,7 @@ export const skillCategories: SkillCategory[] = [
       { name: "GitHub Actions", url: "https://github.com/features/actions" },
       "CI/CD",
     ],
-    accent: "gold",
+    accent: "warm",
   },
   {
     name: "Design & UX",
@@ -172,7 +172,7 @@ export const skillCategories: SkillCategory[] = [
       "Design Systems",
       "Motion Design",
     ],
-    accent: "terracotta",
+    accent: "amber",
   },
   {
     name: "Other",
@@ -182,6 +182,7 @@ export const skillCategories: SkillCategory[] = [
       "Browser Internals",
       "Functional Programming",
     ],
+    accent: "neutral",
   },
 ];
 

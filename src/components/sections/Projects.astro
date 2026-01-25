@@ -3,8 +3,14 @@ import { projects } from "../../data/content";
 import ProjectCard from "../ui/ProjectCard.astro";
 ---
 
-<section id="projects" class="section-padding bg-subtle">
-  <div class="container-main">
+<section
+  id="projects"
+  class="section-padding bg-subtle relative overflow-hidden"
+>
+  <!-- Dot Matrix Pattern -->
+  <div class="absolute inset-0 bg-dots pointer-events-none"></div>
+
+  <div class="container-main relative">
     <!-- Label -->
     <p class="text-label mb-4 will-animate animate-fade-in-up">Projects</p>
 

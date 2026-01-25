@@ -30,6 +30,16 @@
   --color-accent-muted: hsl(220, 35%, 70%);
   --color-warm: hsl(20, 35%, 60%);
   --color-warm-muted: hsl(20, 30%, 75%);
+  --color-pink: hsl(330, 40%, 55%);
+  --color-pink-muted: hsl(330, 30%, 75%);
+  --color-cyan: hsl(190, 40%, 50%);
+  --color-cyan-muted: hsl(190, 30%, 75%);
+  --color-emerald: hsl(150, 35%, 50%);
+  --color-emerald-muted: hsl(150, 30%, 75%);
+  --color-violet: hsl(270, 40%, 60%);
+  --color-violet-muted: hsl(270, 30%, 75%);
+  --color-amber: hsl(35, 45%, 50%);
+  --color-amber-muted: hsl(35, 30%, 75%);
   --color-highlight: hsl(50, 40%, 80%);
   --color-border: hsl(45, 15%, 85%);
 
@@ -56,6 +66,16 @@
   --color-accent-muted: hsl(220, 35%, 45%);
   --color-warm: hsl(20, 40%, 65%);
   --color-warm-muted: hsl(20, 30%, 45%);
+  --color-pink: hsl(330, 45%, 65%);
+  --color-pink-muted: hsl(330, 30%, 45%);
+  --color-cyan: hsl(190, 45%, 60%);
+  --color-cyan-muted: hsl(190, 30%, 45%);
+  --color-emerald: hsl(150, 40%, 60%);
+  --color-emerald-muted: hsl(150, 30%, 45%);
+  --color-violet: hsl(270, 45%, 70%);
+  --color-violet-muted: hsl(270, 30%, 45%);
+  --color-amber: hsl(35, 50%, 60%);
+  --color-amber-muted: hsl(35, 30%, 45%);
   --color-highlight: hsl(50, 45%, 50%);
   --color-border: hsl(220, 12%, 25%);
 }
@@ -141,6 +161,11 @@ body {
 .text-muted { color: var(--color-text-muted); }
 .text-accent { color: var(--color-accent); }
 .text-warm { color: var(--color-warm); }
+.text-pink { color: var(--color-pink); }
+.text-cyan { color: var(--color-cyan); }
+.text-emerald { color: var(--color-emerald); }
+.text-violet { color: var(--color-violet); }
+.text-amber { color: var(--color-amber); }
 
 .bg-base { background-color: var(--color-bg); }
 .bg-subtle { background-color: var(--color-bg-subtle); }
@@ -359,3 +384,43 @@ body {
 .dark .icon-moon { display: none; }
 :not(.dark) .icon-sun { display: none; }
 :not(.dark) .icon-moon { display: block; }
+
+/* ============================================
+   BACKGROUND EFFECTS & TEXTURES
+   ============================================ */
+
+/* Dot Matrix Pattern */
+.bg-dots {
+  background-size: 24px 24px;
+  background-image: radial-gradient(circle, var(--color-border) 1px, transparent 1px);
+  mask-image: radial-gradient(circle at 50% 50%, black, transparent 80%), radial-gradient(circle at 0% 0%, black, transparent 50%);
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, black, transparent 80%), radial-gradient(circle at 0% 0%, black, transparent 50%);
+  opacity: 0.6;
+}
+
+/* Dark mode adjustment for dots */
+.dark .bg-dots {
+  opacity: 0.2;
+  background-image: radial-gradient(circle, var(--color-text-secondary) 1px, transparent 1px);
+}
+
+/* Animation: Breathe (Subtle Opacity/Scale Pulse) */
+@keyframes breathe {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.05);
+  }
+}
+
+.animate-breathe {
+  animation: breathe 8s ease-in-out infinite;
+}
+
+/* Update ambient background orbs to use breathe */
+.ambient-bg .orb {
+  animation: float 25s ease-in-out infinite, breathe 10s ease-in-out infinite;
+}

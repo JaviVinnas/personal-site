@@ -3,7 +3,15 @@ import type { Skill } from "../../data/content";
 
 interface Props {
   skill: string | Skill;
-  accent?: "blue" | "warm" | "neutral";
+  accent?:
+    | "blue"
+    | "warm"
+    | "neutral"
+    | "pink"
+    | "cyan"
+    | "emerald"
+    | "violet"
+    | "amber";
   delay?: number;
 }
 
@@ -17,12 +25,25 @@ const accentClasses = {
   blue: "bg-accent/10 text-accent border-accent/20 dark:bg-accent/20 dark:border-accent/30",
   warm: "bg-warm/10 text-warm border-warm/20 dark:bg-warm/20 dark:border-warm/30",
   neutral: "bg-muted/10 text-secondary border-border",
+  pink: "bg-pink/10 text-pink border-pink/20 dark:bg-pink/20 dark:border-pink/30",
+  cyan: "bg-cyan/10 text-cyan border-cyan/20 dark:bg-cyan/20 dark:border-cyan/30",
+  emerald:
+    "bg-emerald/10 text-emerald border-emerald/20 dark:bg-emerald/20 dark:border-emerald/30",
+  violet:
+    "bg-violet/10 text-violet border-violet/20 dark:bg-violet/20 dark:border-violet/30",
+  amber:
+    "bg-amber/10 text-amber border-amber/20 dark:bg-amber/20 dark:border-amber/30",
 };
 
 const hoverClasses = {
   blue: "hover:bg-accent/20",
   warm: "hover:bg-warm/20",
   neutral: "hover:bg-muted/20",
+  pink: "hover:bg-pink/20",
+  cyan: "hover:bg-cyan/20",
+  emerald: "hover:bg-emerald/20",
+  violet: "hover:bg-violet/20",
+  amber: "hover:bg-amber/20",
 };
 
 const baseClasses = [

@@ -3,8 +3,14 @@ import { experiences } from "../../data/content";
 import TimelineItem from "../ui/TimelineItem.astro";
 ---
 
-<section id="experience" class="section-padding bg-subtle">
-  <div class="container-main">
+<section
+  id="experience"
+  class="section-padding bg-subtle relative overflow-hidden"
+>
+  <!-- Dot Matrix Pattern -->
+  <div class="absolute inset-0 bg-dots pointer-events-none"></div>
+
+  <div class="container-main relative">
     <!-- Label -->
     <p class="text-label mb-4 will-animate animate-fade-in-up">Experience</p>
 
