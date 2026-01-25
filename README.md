@@ -27,7 +27,3 @@ All commands are run from the root of the project, in a terminal:
 | `pnpm build`              | Builds your production site to `./dist/`         |
 | `pnpm preview`            | Previews your build locally                      |
 | `pnpm astro ...`          | Runs Astro CLI commands                          |
-
----
-
-Developed with ❤️ using [Astro](https://astro.build).
