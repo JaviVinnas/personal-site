@@ -16,17 +16,23 @@ import ProjectCard from "../ui/ProjectCard.astro";
 
     <!-- Heading -->
     <h2
-      class="text-heading text-primary will-animate animate-fade-in-up delay-100"
+      class="text-heading text-primary group flex items-center gap-3 w-fit will-animate animate-fade-in-up delay-100"
     >
       Selected Work
+      <a
+        href="#projects"
+        aria-label="Link to projects section"
+        class="text-subheading text-muted opacity-0 group-hover:opacity-50 hover:opacity-100! transition-opacity duration-300 hover:text-accent no-underline"
+      >
+        #
+      </a>
     </h2>
 
     <p
-      class="mt-4 text-body text-secondary max-w-xl will-animate animate-fade-in-up delay-200"
+      class="mt-4 text-body text-primary max-w-xl will-animate animate-fade-in-up delay-200"
     >
-      Personal projects and experiments outside of my day-to-day work.
-      <span class="text-primary">Playgrounds for exploration and learning.</span
-      >
+      Some personal projects and experiments outside of my day-to-day work.
+      Playgrounds for exploration and learning.
     </p>
 
     <div class="mt-10 grid gap-6 sm:grid-cols-2 max-w-3xl">

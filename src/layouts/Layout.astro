@@ -8,6 +8,8 @@ const {
   title = "Javier Rodríguez Viñas — Frontend Engineer & Designer",
   description = "Lead Frontend Engineer & UX Specialist bridging design and code. Expert in React, Next.js, TypeScript, and Design Systems.",
 } = Astro.props;
+
+import Navigation from "../components/Navigation.astro";
 ---
 
 <!doctype html>
@@ -75,7 +77,7 @@ const {
   <body class="min-h-screen relative">
     <!-- Dark Mode Toggle -->
     <button
-      class="theme-toggle"
+      class="theme-toggle btn-round-icon"
       id="theme-toggle"
       aria-label="Toggle dark mode"
       type="button"
@@ -109,6 +111,8 @@ const {
         ></path>
       </svg>
     </button>
+
+    <Navigation />
 
     <slot />
 

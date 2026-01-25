@@ -1,0 +1,285 @@
+---
+
+---
+
+<button
+  id="nav-toggle"
+  class="nav-toggle btn-round-icon"
+  aria-label="Open menu"
+  aria-expanded="false"
+  aria-controls="nav-menu"
+  type="button"
+>
+  <svg class="icon-menu" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="1.5"
+      d="M4 6h16M4 12h16M4 18h16"></path>
+  </svg>
+  <svg class="icon-close" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="1.5"
+      d="M6 18L18 6M6 6l12 12"></path>
+  </svg>
+</button>
+
+<nav id="nav-menu" class="nav-menu" hidden>
+  <ul class="nav-list">
+    <!-- Active Section Indicator -->
+    <li class="nav-indicator" aria-hidden="true"></li>
+
+    <!-- Links -->
+    <li>
+      <a href="#hero" class="nav-link" data-section="hero"
+        ><span>01</span> . /start</a
+      >
+    </li>
+    <li>
+      <a href="#about" class="nav-link" data-section="about"
+        ><span>02</span> . /about</a
+      >
+    </li>
+    <li>
+      <a href="#experience" class="nav-link" data-section="experience"
+        ><span>03</span> . /exp</a
+      >
+    </li>
+    <li>
+      <a href="#skills" class="nav-link" data-section="skills"
+        ><span>04</span> . /skills</a
+      >
+    </li>
+    <li>
+      <a href="#projects" class="nav-link" data-section="projects"
+        ><span>05</span> . /work</a
+      >
+    </li>
+    <li>
+      <a href="#contact" class="nav-link" data-section="contact"
+        ><span>06</span> . /contact</a
+      >
+    </li>
+  </ul>
+</nav>
+
+<style>
+  /* Button Styles (Matched to Theme Toggle) */
+  /* Button Styles (Base provided by .btn-round-icon) */
+  .nav-toggle {
+    position: fixed;
+    top: 1.5rem; /* Same height as theme toggle */
+    left: 1.5rem; /* Moved to left side */
+    anchor-name: --nav-toggle;
+    /* Redundant styles removed: z-index, width, height, display, alignment, bg, border, cursor, transition */
+  }
+
+  .nav-toggle svg {
+    /* Absolute position required for the cross-fade effect */
+    position: absolute;
+    /* Other props (color, size) handled by .btn-round-icon */
+  }
+
+  /* Icon State */
+  .nav-toggle[aria-expanded="true"] .icon-menu {
+    opacity: 0;
+    transform: rotate(90deg) scale(0);
+  }
+  .nav-toggle[aria-expanded="false"] .icon-close {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0);
+  }
+  .icon-menu,
+  .icon-close {
+    transition: all var(--duration-normal) var(--ease-out-expo);
+  }
+
+  /* Menu Popover */
+  .nav-menu {
+    position: fixed;
+    z-index: 49;
+    padding: 1rem;
+    margin: 0;
+    min-width: 200px;
+    background-color: var(--color-bg-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.1);
+
+    /* Fallback positioning */
+    top: 1.5rem;
+    left: 6rem; /* Increased fallback separation */
+
+    /* Anchor Positioning */
+    position-anchor: --nav-toggle;
+    top: anchor(top);
+    left: anchor(right, 1.5rem);
+
+    /* Animation */
+    opacity: 0;
+    transform: translateX(-10px) scale(0.95);
+    transition:
+      opacity 200ms var(--ease-out-expo),
+      transform 200ms var(--ease-out-expo),
+      display 200ms allow-discrete,
+      overlay 200ms allow-discrete;
+    pointer-events: none;
+    margin-left: 1rem;
+  }
+
+  /* Show State */
+  .nav-menu:not([hidden]) {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    pointer-events: auto;
+
+    /* Entry Transition */
+    @starting-style {
+      opacity: 0;
+      transform: translateX(-10px) scale(0.95);
+    }
+  }
+
+  .nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    position: relative;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    border-radius: 0.5rem;
+    transition: color var(--duration-fast);
+  }
+
+  .nav-link span {
+    color: var(--color-text-muted);
+    opacity: 0.5;
+    font-size: 0.75em;
+  }
+
+  .nav-link:hover {
+    color: var(--color-text);
+    background-color: var(--color-bg-muted);
+  }
+
+  .nav-link.active {
+    color: var(--color-accent); /* Blue accent for active state */
+    background-color: transparent;
+  }
+
+  /* Allow hover background even for active state */
+  .nav-link.active:hover {
+    background-color: var(--color-bg-muted);
+  }
+
+  /* Dynamic Indicator using CSS Anchors */
+  .nav-link.active {
+    anchor-name: --active-section;
+  }
+
+  .nav-indicator {
+    position: absolute;
+    left: -4px; /* Outside the list items slightly */
+    width: 3px;
+    background-color: var(--color-accent);
+    border-radius: 2px;
+
+    /* Anchor Positioning Logic */
+    position-anchor: --active-section;
+    top: anchor(top);
+    height: anchor(height);
+
+    /* Animation */
+    transition:
+      top 0.3s var(--ease-out-quart),
+      height 0.3s var(--ease-out-quart);
+  }
+
+  /* Hide indicator if no active section or anchor not supported/active */
+  :root:not(:has(.nav-link.active)) .nav-indicator {
+    opacity: 0;
+  }
+</style>
+
+<script>
+  // Menu Toggle Logic
+  const toggle = document.getElementById("nav-toggle");
+  const menu = document.getElementById("nav-menu");
+  let isOpen = false;
+
+  toggle?.addEventListener("click", () => {
+    isOpen = !isOpen;
+    toggle.setAttribute("aria-expanded", String(isOpen));
+    if (isOpen) {
+      menu?.removeAttribute("hidden");
+    } else {
+      menu?.setAttribute("hidden", "");
+    }
+  });
+
+  // Close on click outside
+  document.addEventListener("click", (e) => {
+    if (
+      isOpen &&
+      !toggle?.contains(e.target as Node) &&
+      !menu?.contains(e.target as Node)
+    ) {
+      isOpen = false;
+      toggle?.setAttribute("aria-expanded", "false");
+      menu?.setAttribute("hidden", "");
+    }
+  });
+
+  // Close on menu item click
+  menu?.querySelectorAll(".nav-link").forEach((link) => {
+    link.addEventListener("click", () => {
+      isOpen = false;
+      toggle?.setAttribute("aria-expanded", "false");
+      menu?.setAttribute("hidden", "");
+    });
+  });
+
+  // Intersection Observer for Active State
+  const observerOptions = {
+    root: null,
+    rootMargin: "-20% 0px -60% 0px", // Trigger when section is near top
+    threshold: 0,
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        // Remove active class from all
+        document
+          .querySelectorAll(".nav-link")
+          .forEach((link) => link.classList.remove("active"));
+
+        // Add active class to corresponding link
+        const id = entry.target.getAttribute("id");
+        const link = document.querySelector(`.nav-link[data-section="${id}"]`);
+        link?.classList.add("active");
+
+        // Safari/Fallback: If CSS Anchor not supported, we could manually position here,
+        // but user requested Css Anchor approach.
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll("section[id]").forEach((section) => {
+    observer.observe(section);
+  });
+</script>
