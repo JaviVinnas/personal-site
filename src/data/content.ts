@@ -200,7 +200,7 @@ export const projects: Project[] = [
   {
     title: "Personal Portfolio",
     type: "Digital Identity",
-    description: "My personal spot on the web (this site!), designed with a focus on typography, motion, and extreme attention to detail.",
+    description: "My personal spot on the web, designed with a focus on typography, motion, and extreme attention to detail.",
     highlights: [
       "Built with Astro and Svelte / TypeScript for maximum performance and developer experience",
       "Custom fluid design system with system-aware dark/light mode support",
