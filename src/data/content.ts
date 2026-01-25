@@ -9,7 +9,7 @@ export const personal = {
   email: "javi.vinas.2000@gmail.com",
   phone: "+34 646 418 718",
   location: "Vigo, Spain",
-  locationUrl: "https://maps.app.goo.gl/YG8vBqpYGRBkDQTR9",
+  locationUrl: "https://maps.app.goo.gl/UJeRYwdfmHvyEmwm6",
   social: {
     linkedin: "https://www.linkedin.com/in/javi-rodriguez-viñas",
     github: "https://github.com/JaviVinnas",

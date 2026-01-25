@@ -14,9 +14,15 @@ const skillName = typeof skill === "string" ? skill : skill.name;
 const skillUrl = typeof skill === "string" ? undefined : skill.url;
 
 const accentClasses = {
-  blue: "bg-accent/10 text-accent border-accent/20 hover:bg-accent/20 dark:bg-accent/20 dark:border-accent/30",
-  warm: "bg-warm/10 text-warm border-warm/20 hover:bg-warm/20 dark:bg-warm/20 dark:border-warm/30",
-  neutral: "bg-muted/10 text-secondary border-border hover:bg-muted/20",
+  blue: "bg-accent/10 text-accent border-accent/20 dark:bg-accent/20 dark:border-accent/30",
+  warm: "bg-warm/10 text-warm border-warm/20 dark:bg-warm/20 dark:border-warm/30",
+  neutral: "bg-muted/10 text-secondary border-border",
+};
+
+const hoverClasses = {
+  blue: "hover:bg-accent/20",
+  warm: "hover:bg-warm/20",
+  neutral: "hover:bg-muted/20",
 };
 
 const baseClasses = [
@@ -26,7 +32,7 @@ const baseClasses = [
   accentClasses[accent],
 ];
 
-const linkClasses = skillUrl ? "cursor-pointer" : "";
+const linkClasses = skillUrl ? `cursor-pointer ${hoverClasses[accent]}` : "";
 ---
 
 {
