@@ -193,9 +193,22 @@ export interface Project {
   highlights: string[];
   url?: string;
   github?: string;
+  isCurrent?: boolean;
 }
 
 export const projects: Project[] = [
+  {
+    title: "Personal Portfolio",
+    type: "Digital Identity",
+    description: "My personal spot on the web (this site!), designed with a focus on typography, motion, and extreme attention to detail.",
+    highlights: [
+      "Built with Astro and TypeScript for maximum performance and developer experience",
+      "Custom fluid design system with system-aware dark/light mode support",
+      "Automated SEO optimization and high-fidelity motion design",
+    ],
+    github: "https://github.com/JaviVinnas/personal-site",
+    isCurrent: true,
+  },
   {
     title: "Clinical Patient Tracker",
     type: "Technical Showcase",

@@ -19,8 +19,18 @@ const delay = 200 + index * 100;
 >
   <!-- Content grows to push footer down -->
   <div class="flex-1">
-    <!-- Type badge -->
-    <span class="text-label mb-3 block">{project.type}</span>
+    <!-- Type & Status badge -->
+    <div class="flex justify-between items-center mb-3">
+      <span class="text-label">{project.type}</span>
+      {
+        project.isCurrent && (
+          <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-accent/10 border border-accent/20 text-[9px] font-mono text-accent uppercase tracking-widest animate-pulse whitespace-nowrap">
+            <span class="w-1 h-1 rounded-full bg-accent" />
+            You are here
+          </span>
+        )
+      }
+    </div>
 
     <!-- Title -->
     <h3
