@@ -29,7 +29,6 @@
 <nav id="nav-menu" class="nav-menu" hidden>
   <ul class="nav-list">
     <!-- Active Section Indicator -->
-    <li class="nav-indicator" aria-hidden="true"></li>
 
     <!-- Links -->
     <li>
@@ -162,7 +161,7 @@
     color: var(--color-text-muted);
     text-decoration: none;
     border-radius: 0.5rem;
-    transition: color var(--duration-fast);
+    transition: all var(--duration-fast);
   }
 
   .nav-link span {
@@ -176,42 +175,25 @@
     background-color: var(--color-bg-muted);
   }
 
+  /* Active State: Subtle Background + Accent Color */
   .nav-link.active {
-    color: var(--color-accent); /* Blue accent for active state */
-    background-color: transparent;
+    color: var(--color-accent);
+    /* Subtle tinted background using color-mix for elegance */
+    background-color: color-mix(in srgb, var(--color-accent) 8%, transparent);
+    font-weight: 500;
   }
 
-  /* Allow hover background even for active state */
+  .nav-link.active span {
+    color: var(--color-accent);
+    opacity: 0.7;
+  }
+
+  /* Hover on active should maintain the active feel but maybe slightly darken? 
+     Or just let the hover style take precedence? 
+     Usually active state is "locked". Let's slightly increase opacity on hover for feedback.
+  */
   .nav-link.active:hover {
-    background-color: var(--color-bg-muted);
-  }
-
-  /* Dynamic Indicator using CSS Anchors */
-  .nav-link.active {
-    anchor-name: --active-section;
-  }
-
-  .nav-indicator {
-    position: absolute;
-    left: -4px; /* Outside the list items slightly */
-    width: 3px;
-    background-color: var(--color-accent);
-    border-radius: 2px;
-
-    /* Anchor Positioning Logic */
-    position-anchor: --active-section;
-    top: anchor(top);
-    height: anchor(height);
-
-    /* Animation */
-    transition:
-      top 0.3s var(--ease-out-quart),
-      height 0.3s var(--ease-out-quart);
-  }
-
-  /* Hide indicator if no active section or anchor not supported/active */
-  :root:not(:has(.nav-link.active)) .nav-indicator {
-    opacity: 0;
+    background-color: color-mix(in srgb, var(--color-accent) 12%, transparent);
   }
 </style>
 
