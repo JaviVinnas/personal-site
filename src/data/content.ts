@@ -198,7 +198,7 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    title: "Personal Portfolio",
+    title: "Personal Site",
     type: "Digital Identity",
     description: "My personal spot on the web, designed with a focus on typography, motion, and extreme attention to detail.",
     highlights: [
