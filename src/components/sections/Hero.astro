@@ -63,7 +63,14 @@ import { personal } from "../../data/content";
           </svg>
         </a>
         <span class="text-border">·</span>
-        <span class="text-body-sm text-muted">{personal.location}</span>
+        <a
+          href={personal.locationUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="link-animated text-body-sm"
+        >
+          {personal.location}
+        </a>
       </div>
     </div>
   </div>

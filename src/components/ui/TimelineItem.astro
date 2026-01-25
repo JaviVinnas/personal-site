@@ -44,9 +44,22 @@ const delay = 200 + index * 150;
         <span class="text-label hidden md:block">{experience.period}</span>
       </div>
       <div class="flex flex-wrap items-center gap-2">
-        <span class="font-mono text-body-sm text-accent"
-          >{experience.company}</span
-        >
+        {
+          experience.companyUrl ? (
+            <a
+              href={experience.companyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="font-mono text-body-sm text-accent link-underline"
+            >
+              {experience.company}
+            </a>
+          ) : (
+            <span class="font-mono text-body-sm text-accent">
+              {experience.company}
+            </span>
+          )
+        }
         <span class="text-muted">·</span>
         <span class="text-body-sm text-muted">{experience.location}</span>
       </div>

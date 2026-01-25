@@ -9,6 +9,7 @@ export const personal = {
   email: "javi.vinas.2000@gmail.com",
   phone: "+34 646 418 718",
   location: "Vigo, Spain",
+  locationUrl: "https://maps.app.goo.gl/YG8vBqpYGRBkDQTR9",
   social: {
     linkedin: "https://www.linkedin.com/in/javi-rodriguez-viñas",
     github: "https://github.com/JaviVinnas",
@@ -29,6 +30,7 @@ export const bio = {
 export interface Experience {
   role: string;
   company: string;
+  companyUrl?: string;
   period: string;
   location: string;
   type: "remote" | "hybrid" | "onsite";
@@ -40,6 +42,7 @@ export const experiences: Experience[] = [
   {
     role: "Lead Frontend Engineer",
     company: "Sbayt",
+    companyUrl: "https://sbayt.com",
     period: "November 2023 – Present",
     location: "Remote (A Coruña, ES)",
     type: "remote",
@@ -55,6 +58,7 @@ export const experiences: Experience[] = [
   {
     role: "Fullstack Engineer",
     company: "Gradiant",
+    companyUrl: "https://www.gradiant.org",
     period: "February 2022 – October 2023",
     location: "Hybrid (Vigo, ES)",
     type: "hybrid",
@@ -69,6 +73,7 @@ export const experiences: Experience[] = [
   {
     role: "Frontend Developer (Intern)",
     company: "Gradiant",
+    companyUrl: "https://www.gradiant.org",
     period: "June 2021 – August 2021",
     location: "Hybrid (Vigo, ES)",
     type: "hybrid",
@@ -80,51 +85,103 @@ export const experiences: Experience[] = [
   },
 ];
 
+export interface Skill {
+  name: string;
+  url?: string;
+}
+
 export interface SkillCategory {
   name: string;
-  skills: string[];
+  skills: (string | Skill)[];
   accent?: "blue" | "terracotta" | "gold";
 }
 
 export const skillCategories: SkillCategory[] = [
   {
     name: "Frontend Core",
-    skills: ["React", "Next.js", "TypeScript", "Vue 3", "HTML5", "CSS3", "Astro"],
+    skills: [
+      { name: "React", url: "https://react.dev" },
+      { name: "Next.js", url: "https://nextjs.org" },
+      { name: "TypeScript", url: "https://www.typescriptlang.org" },
+      { name: "Vue 3", url: "https://vuejs.org" },
+      "HTML5",
+      "CSS3",
+      { name: "Astro", url: "https://astro.build" },
+    ],
     accent: "blue",
   },
   {
     name: "UI & Styling",
-    skills: ["Tailwind CSS", "Framer Motion", "Radix UI", "CSS Modules", "Rive"],
+    skills: [
+      { name: "Tailwind CSS", url: "https://tailwindcss.com" },
+      { name: "Framer Motion", url: "https://motion.dev" },
+      { name: "Radix UI", url: "https://www.radix-ui.com" },
+      "CSS Modules",
+      { name: "Rive", url: "https://rive.app" },
+    ],
     accent: "terracotta",
   },
   {
     name: "State & Data",
-    skills: ["React Query", "Redux", "Vuex", "Zustand", "Axios"],
+    skills: [
+      { name: "React Query", url: "https://tanstack.com/query" },
+      { name: "Redux", url: "https://redux.js.org" },
+      { name: "Vuex", url: "https://vuex.vuejs.org" },
+      { name: "Zustand", url: "https://zustand.docs.pmnd.rs" },
+      "Axios",
+    ],
     accent: "blue",
   },
   {
     name: "Backend",
-    skills: ["Node.js", "Express.js", "Hono.js", "Python", "Prisma", "DrizzleORM"],
+    skills: [
+      { name: "Node.js", url: "https://nodejs.org" },
+      { name: "Express.js", url: "https://expressjs.com" },
+      { name: "Hono.js", url: "https://hono.dev" },
+      { name: "Python", url: "https://www.python.org" },
+      { name: "Prisma", url: "https://www.prisma.io" },
+      { name: "DrizzleORM", url: "https://orm.drizzle.team" },
+    ],
     accent: "gold",
   },
   {
     name: "Databases",
-    skills: ["PostgreSQL", "MongoDB", "MinIO"],
+    skills: [
+      { name: "PostgreSQL", url: "https://www.postgresql.org" },
+      { name: "MongoDB", url: "https://www.mongodb.com" },
+      { name: "MinIO", url: "https://min.io" },
+    ],
     accent: "gold",
   },
   {
     name: "Infrastructure",
-    skills: ["AWS", "Docker", "GitHub Actions", "CI/CD"],
+    skills: [
+      { name: "AWS", url: "https://aws.amazon.com" },
+      { name: "Docker", url: "https://www.docker.com" },
+      { name: "GitHub Actions", url: "https://github.com/features/actions" },
+      "CI/CD",
+    ],
     accent: "gold",
   },
   {
     name: "Design & UX",
-    skills: ["Figma", "Wireframing", "Prototyping", "Design Systems", "Motion Design"],
+    skills: [
+      { name: "Figma", url: "https://www.figma.com" },
+      "Wireframing",
+      "Prototyping",
+      "Design Systems",
+      "Motion Design",
+    ],
     accent: "terracotta",
   },
   {
     name: "Other",
-    skills: ["Git", "Monorepo Architecture", "Browser Internals", "Functional Programming"],
+    skills: [
+      { name: "Git", url: "https://git-scm.com" },
+      "Monorepo Architecture",
+      "Browser Internals",
+      "Functional Programming",
+    ],
   },
 ];
 
