@@ -375,18 +375,7 @@ body {
   transition: color var(--duration-fast) ease;
 }
 
-.theme-toggle {
-  position: fixed;
-  top: 1.5rem;
-  right: 1.5rem;
-  z-index: 50;
-}
 
-/* Hide/show icons based on theme */
-.dark .icon-sun { display: block; }
-.dark .icon-moon { display: none; }
-:not(.dark) .icon-sun { display: none; }
-:not(.dark) .icon-moon { display: block; }
 
 /* ============================================
    BACKGROUND EFFECTS & TEXTURES
