@@ -12,12 +12,12 @@
   --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
   /* CONSOLIDATED Typography Scale (reduced to 6 sizes) */
-  --text-xs: 0.875rem;    /* 14px - labels, meta */
-  --text-sm: 1rem;        /* 16px - body small */
-  --text-base: 1.125rem;  /* 18px - body default */
-  --text-lg: 2.75rem;      /* 24px - subheadings */
-  --text-xl: 4rem;      /* 40px - section titles (serif) */
-  --text-display: clamp(5.5rem, 5.25rem + 1vw, 6rem); 
+  --text-xs: 0.875rem;    
+  --text-sm: 1rem;        
+  --text-base: 1.125rem;  
+  --text-lg: 2.75rem;      
+  --text-xl: 4rem;      
+  --text-display: clamp(5rem, 4.5rem + 2vw, 6rem); 
 
   /* Color Palette - Light Mode (default) */
   --color-bg: hsl(45, 20%, 97%);
