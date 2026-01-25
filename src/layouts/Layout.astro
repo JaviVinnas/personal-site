@@ -9,8 +9,8 @@ const {
   description = "Lead Frontend Engineer & UX Specialist bridging design and code. Expert in React, Next.js, TypeScript, and Design Systems.",
 } = Astro.props;
 
-import Navigation from "../components/Navigation.astro";
-import ThemeToggle from "../components/ThemeToggle.astro";
+import Navigation from "../components/Navigation.svelte";
+import ThemeToggle from "../components/ThemeToggle.svelte";
 ---
 
 <!doctype html>
@@ -76,9 +76,9 @@ import ThemeToggle from "../components/ThemeToggle.astro";
     </style>
   </head>
   <body class="min-h-screen relative">
-    <ThemeToggle />
+    <ThemeToggle client:load />
 
-    <Navigation />
+    <Navigation client:load />
 
     <slot />
   </body>
