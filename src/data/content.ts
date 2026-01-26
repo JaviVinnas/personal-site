@@ -71,7 +71,7 @@ export const experiences: Experience[] = [
     ],
   },
   {
-    role: "Frontend Developer (Intern)",
+    role: "Frontend Engineer",
     company: "Gradiant",
     companyUrl: "https://www.gradiant.org",
     period: "June 2021 → August 2021",

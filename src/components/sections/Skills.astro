@@ -85,9 +85,7 @@ import SkillBadge from "../ui/SkillBadge.astro";
           <div class="space-y-8">
             <!-- Degree -->
             <div>
-              <p
-                class="text-label mb-3 pb-1 border-b border-border/50 inline-block"
-              >
+              <p class="text-label mb-4 pb-2 border-b border-border">
                 Academic
               </p>
               <div>
@@ -107,7 +105,7 @@ import SkillBadge from "../ui/SkillBadge.astro";
             {
               certifications.length > 0 && (
                 <div>
-                  <p class="text-label mb-3 pb-1 border-b border-border/50 inline-block">
+                  <p class="text-label mb-4 pb-2 border-b border-border">
                     Certifications
                   </p>
                   <div class="space-y-4">
@@ -188,11 +186,7 @@ import SkillBadge from "../ui/SkillBadge.astro";
         </h3>
         <div class="grid gap-8 sm:grid-cols-2">
           <div>
-            <p
-              class="text-label mb-2 pb-1 border-b border-border/50 inline-block"
-            >
-              Learning
-            </p>
+            <p class="text-label mb-4 pb-2 border-b border-border">Learning</p>
             <div class="flex flex-wrap gap-2 mt-2">
               {
                 interests.learning.map((item) => (
@@ -204,11 +198,7 @@ import SkillBadge from "../ui/SkillBadge.astro";
             </div>
           </div>
           <div>
-            <p
-              class="text-label mb-2 pb-1 border-b border-border/50 inline-block"
-            >
-              Personal
-            </p>
+            <p class="text-label mb-4 pb-2 border-b border-border">Personal</p>
             <div class="flex flex-wrap gap-2 mt-2">
               {
                 interests.personal.map((item) => (
