@@ -1,0 +1,14 @@
+---
+/**
+ * Dot matrix background pattern overlay.
+ * Used in Experience and Projects sections.
+ */
+interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+---
+
+<div class:list={["absolute inset-0 bg-dots pointer-events-none", className]}>
+</div>

@@ -1,32 +1,18 @@
 ---
 import { projects } from "../../data/content";
 import ProjectCard from "../ui/ProjectCard.astro";
+import SectionHeader from "../ui/SectionHeader.astro";
+import DotPattern from "../ui/DotPattern.astro";
 ---
 
 <section
   id="projects"
   class="section-padding bg-subtle relative overflow-hidden"
 >
-  <!-- Dot Matrix Pattern -->
-  <div class="absolute inset-0 bg-dots pointer-events-none"></div>
+  <DotPattern />
 
   <div class="container-main relative">
-    <!-- Label -->
-    <p class="text-label mb-4 will-animate animate-fade-in-up">Projects</p>
-
-    <!-- Heading -->
-    <h2
-      class="text-heading text-primary group flex items-center gap-3 w-fit will-animate animate-fade-in-up delay-100"
-    >
-      Selected Work
-      <a
-        href="#projects"
-        aria-label="Link to projects section"
-        class="text-subheading text-muted opacity-0 group-hover:opacity-50 hover:opacity-100! transition-opacity duration-300 hover:text-accent no-underline"
-      >
-        #
-      </a>
-    </h2>
+    <SectionHeader label="Projects" title="Selected Work" id="projects" />
 
     <p
       class="mt-4 text-body text-secondary max-w-xl will-animate animate-fade-in-up delay-200"

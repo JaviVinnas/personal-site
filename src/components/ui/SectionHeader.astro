@@ -1,0 +1,45 @@
+---
+/**
+ * Reusable section header with label, title, and optional anchor link.
+ * Used across About, Experience, Skills, Projects, and Contact sections.
+ */
+interface Props {
+  label: string;
+  title: string;
+  id: string;
+  showAnchor?: boolean;
+  class?: string;
+}
+
+const {
+  label,
+  title,
+  id,
+  showAnchor = true,
+  class: className = "",
+} = Astro.props;
+---
+
+<div class={className}>
+  <!-- Label -->
+  <p class="text-label mb-4 will-animate animate-fade-in-up">{label}</p>
+
+  <!-- Heading -->
+  <h2
+    class="text-heading text-primary group flex items-center gap-3 w-fit will-animate animate-fade-in-up delay-100"
+  >
+    {title}
+    {
+      showAnchor && (
+        <a
+          href={`#${id}`}
+          aria-label={`Link to ${label.toLowerCase()} section`}
+          class="text-subheading text-muted opacity-0 group-hover:opacity-50 hover:opacity-100! transition-opacity duration-300 hover:text-accent no-underline"
+        >
+          #
+        </a>
+      )
+    }
+    <slot name="after-title" />
+  </h2>
+</div>

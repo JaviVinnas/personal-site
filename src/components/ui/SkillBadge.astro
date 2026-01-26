@@ -1,5 +1,6 @@
 ---
 import type { Skill } from "../../data/content";
+import ExternalLink from "../icons/ExternalLink.astro";
 
 interface Props {
   skill: string | Skill;
@@ -69,19 +70,10 @@ const linkClasses = skillUrl
       style={`animation-delay: ${delay}ms`}
     >
       {skillName}
-      <svg
+      <ExternalLink
         class="w-3 h-3 ml-1 opacity-40 transition-all duration-200 group-hover:opacity-100"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2.5"
-          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-        />
-      </svg>
+        strokeWidth="2.5"
+      />
     </a>
   ) : (
     <span class:list={baseClasses} style={`animation-delay: ${delay}ms`}>

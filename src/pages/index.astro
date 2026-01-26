@@ -7,23 +7,20 @@ import Skills from "../components/sections/Skills.astro";
 import Projects from "../components/sections/Projects.astro";
 import Contact from "../components/sections/Contact.astro";
 import Footer from "../components/sections/Footer.astro";
+import SectionDivider from "../components/ui/SectionDivider.astro";
 ---
 
 <Layout>
   <main>
     <Hero />
     <About />
-    <div class="w-full h-px bg-linear-to-r from-border from-80% to-transparent">
-    </div>
+    <SectionDivider />
     <Experience />
-    <div class="w-full h-px bg-linear-to-r from-border from-80% to-transparent">
-    </div>
+    <SectionDivider />
     <Skills />
-    <div class="w-full h-px bg-linear-to-r from-border from-80% to-transparent">
-    </div>
+    <SectionDivider />
     <Projects />
-    <div class="w-full h-px bg-linear-to-r from-border from-80% to-transparent">
-    </div>
+    <SectionDivider />
     <Contact />
   </main>
   <Footer />

@@ -1,0 +1,19 @@
+---
+/**
+ * Gradient divider line used between main sections.
+ * Extracted from index.astro to eliminate repetition.
+ */
+interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+---
+
+<div
+  class:list={[
+    "w-full h-px bg-linear-to-r from-border from-80% to-transparent",
+    className,
+  ]}
+>
+</div>

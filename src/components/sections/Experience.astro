@@ -1,32 +1,22 @@
 ---
 import { experiences } from "../../data/content";
 import TimelineItem from "../ui/TimelineItem.astro";
+import SectionHeader from "../ui/SectionHeader.astro";
+import DotPattern from "../ui/DotPattern.astro";
 ---
 
 <section
   id="experience"
   class="section-padding bg-subtle relative overflow-hidden"
 >
-  <!-- Dot Matrix Pattern -->
-  <div class="absolute inset-0 bg-dots pointer-events-none"></div>
+  <DotPattern />
 
   <div class="container-main relative">
-    <!-- Label -->
-    <p class="text-label mb-4 will-animate animate-fade-in-up">Experience</p>
-
-    <!-- Heading -->
-    <h2
-      class="text-heading text-primary group flex items-center gap-3 w-fit will-animate animate-fade-in-up delay-100"
-    >
-      Where I've Worked
-      <a
-        href="#experience"
-        aria-label="Link to experience section"
-        class="text-subheading text-muted opacity-0 group-hover:opacity-50 hover:opacity-100! transition-opacity duration-300 hover:text-accent no-underline"
-      >
-        #
-      </a>
-    </h2>
+    <SectionHeader
+      label="Experience"
+      title="Where I've Worked"
+      id="experience"
+    />
 
     <div class="mt-12">
       {

@@ -7,33 +7,15 @@ import {
   interests,
 } from "../../data/content";
 import SkillBadge from "../ui/SkillBadge.astro";
-
-// Map original accent to new simplified accents
-// const accentMap: Record<string, "blue" | "warm" | "neutral"> = {
-//   blue: "blue",
-//   terracotta: "warm",
-//   gold: "warm",
-// };
+import SectionHeader from "../ui/SectionHeader.astro";
+import Education from "../icons/Education.astro";
+import Globe from "../icons/Globe.astro";
+import Star from "../icons/Star.astro";
 ---
 
 <section id="skills" class="section-padding">
   <div class="container-main">
-    <!-- Label -->
-    <p class="text-label mb-4 will-animate animate-fade-in-up">Expertise</p>
-
-    <!-- Heading -->
-    <h2
-      class="text-heading text-primary group flex items-center gap-3 w-fit will-animate animate-fade-in-up delay-100"
-    >
-      Skills & Background
-      <a
-        href="#skills"
-        aria-label="Link to skills section"
-        class="text-subheading text-muted opacity-0 group-hover:opacity-50 hover:opacity-100! transition-opacity duration-300 hover:text-accent no-underline"
-      >
-        #
-      </a>
-    </h2>
+    <SectionHeader label="Expertise" title="Skills & Background" id="skills" />
 
     <div class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
       {
@@ -66,18 +48,7 @@ import SkillBadge from "../ui/SkillBadge.astro";
         <div class="will-animate animate-fade-in-up delay-300">
           <h3 class="text-subheading mb-6 flex items-center gap-3">
             <span class="text-accent">
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                ><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path
-                  d="M6 12v5c3 3 9 3 12 0v-5"></path></svg
-              >
+              <Education class="size-6" />
             </span>
             Education
           </h3>
@@ -129,23 +100,7 @@ import SkillBadge from "../ui/SkillBadge.astro";
       <div class="will-animate animate-fade-in-up delay-400">
         <h3 class="text-subheading mb-6 flex items-center gap-3">
           <span class="text-accent">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              ><circle cx="12" cy="12" r="10"></circle><line
-                x1="2"
-                y1="12"
-                x2="22"
-                y2="12"></line><path
-                d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
-              ></path></svg
-            >
+            <Globe class="size-6" />
           </span>
           Languages
         </h3>
@@ -168,19 +123,7 @@ import SkillBadge from "../ui/SkillBadge.astro";
       <div class="lg:col-span-2 will-animate animate-fade-in-up delay-500">
         <h3 class="text-subheading mb-6 flex items-center gap-3">
           <span class="text-accent">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              ><polygon
-                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-              ></polygon></svg
-            >
+            <Star class="size-6" />
           </span>
           Interests
         </h3>
