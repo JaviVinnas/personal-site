@@ -1,5 +1,11 @@
 ---
-import { skillCategories } from "../../data/content";
+import {
+  skillCategories,
+  education,
+  languages,
+  certifications,
+  interests,
+} from "../../data/content";
 import SkillBadge from "../ui/SkillBadge.astro";
 
 // Map original accent to new simplified accents
@@ -13,13 +19,13 @@ import SkillBadge from "../ui/SkillBadge.astro";
 <section id="skills" class="section-padding">
   <div class="container-main">
     <!-- Label -->
-    <p class="text-label mb-4 will-animate animate-fade-in-up">Skills</p>
+    <p class="text-label mb-4 will-animate animate-fade-in-up">Expertise</p>
 
     <!-- Heading -->
     <h2
       class="text-heading text-primary group flex items-center gap-3 w-fit will-animate animate-fade-in-up delay-100"
     >
-      Technical Toolkit
+      Skills & Background
       <a
         href="#skills"
         aria-label="Link to skills section"
@@ -51,6 +57,170 @@ import SkillBadge from "../ui/SkillBadge.astro";
           </div>
         ))
       }
+    </div>
+
+    <!-- Additional Background Info -->
+    <div class="mt-16 grid gap-12 lg:grid-cols-2">
+      <!-- Education & Certifications -->
+      <div class="space-y-12">
+        <div class="will-animate animate-fade-in-up delay-300">
+          <h3 class="text-subheading mb-6 flex items-center gap-3">
+            <span class="text-accent">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path
+                  d="M6 12v5c3 3 9 3 12 0v-5"></path></svg
+              >
+            </span>
+            Education
+          </h3>
+
+          <div class="space-y-8">
+            <!-- Degree -->
+            <div>
+              <p
+                class="text-label mb-3 pb-1 border-b border-border/50 inline-block"
+              >
+                Academic
+              </p>
+              <div>
+                <h4 class="text-body text-primary font-medium">
+                  {education.degree}
+                </h4>
+                <p class="text-body-sm text-secondary mt-1">
+                  {education.institution}
+                </p>
+                <p class="font-mono text-xs text-muted mt-2">
+                  {education.graduated}
+                </p>
+              </div>
+            </div>
+
+            <!-- Certifications -->
+            {
+              certifications.length > 0 && (
+                <div>
+                  <p class="text-label mb-3 pb-1 border-b border-border/50 inline-block">
+                    Certifications
+                  </p>
+                  <div class="space-y-4">
+                    {certifications.map((cert) => (
+                      <div>
+                        <p class="text-body-sm text-primary">{cert.name}</p>
+                        <p class="font-mono text-xs text-muted mt-0.5">
+                          {cert.status}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- Languages -->
+      <div class="will-animate animate-fade-in-up delay-400">
+        <h3 class="text-subheading mb-6 flex items-center gap-3">
+          <span class="text-accent">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              ><circle cx="12" cy="12" r="10"></circle><line
+                x1="2"
+                y1="12"
+                x2="22"
+                y2="12"></line><path
+                d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+              ></path></svg
+            >
+          </span>
+          Languages
+        </h3>
+        <div class="grid gap-6 sm:grid-cols-2">
+          {
+            languages.map((lang, i) => (
+              <div
+                class="rounded-lg bg-subtle/50 border border-transparent transition-colors duration-300"
+                style={`transition-delay: ${i * 50}ms`}
+              >
+                <p class="text-body text-primary font-medium">{lang.name}</p>
+                <p class="text-body-sm text-secondary mt-1">{lang.level}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Interests -->
+      <div class="lg:col-span-2 will-animate animate-fade-in-up delay-500">
+        <h3 class="text-subheading mb-6 flex items-center gap-3">
+          <span class="text-accent">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              ><polygon
+                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+              ></polygon></svg
+            >
+          </span>
+          Interests
+        </h3>
+        <div class="grid gap-8 sm:grid-cols-2">
+          <div>
+            <p
+              class="text-label mb-2 pb-1 border-b border-border/50 inline-block"
+            >
+              Learning
+            </p>
+            <div class="flex flex-wrap gap-2 mt-2">
+              {
+                interests.learning.map((item) => (
+                  <span class="px-3 py-1 bg-subtle rounded-full text-body-sm text-secondary hover:text-primary transition-colors cursor-default">
+                    {item}
+                  </span>
+                ))
+              }
+            </div>
+          </div>
+          <div>
+            <p
+              class="text-label mb-2 pb-1 border-b border-border/50 inline-block"
+            >
+              Personal
+            </p>
+            <div class="flex flex-wrap gap-2 mt-2">
+              {
+                interests.personal.map((item) => (
+                  <span class="px-3 py-1 bg-subtle rounded-full text-body-sm text-secondary hover:text-primary transition-colors cursor-default">
+                    {item}
+                  </span>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>

@@ -106,7 +106,7 @@ export const skillCategories: SkillCategory[] = [
       { name: "Vue 3", url: "https://vuejs.org" },
       "HTML5",
       "CSS3",
-      { name: "Astro", url: "https://astro.build" },
+      { name: "Preact", url: "https://preactjs.com" },
     ],
     accent: "blue",
   },
@@ -186,6 +186,31 @@ export const skillCategories: SkillCategory[] = [
   },
 ];
 
+export const education = {
+  degree: "B.Sc. in Computer Engineering",
+  institution: "University of Santiago de Compostela (USC)",
+  graduated: "June 2022",
+};
+
+export const certifications = [
+  {
+    name: "AWS Certified Developer",
+    status: "In progress",
+  },
+];
+
+export const languages = [
+  { name: "Spanish", level: "Native" },
+  { name: "Galician", level: "Native" },
+  { name: "English", level: "B1 (Daily professional use)" },
+  { name: "French", level: "Elementary (A1 certified)" },
+];
+
+export const interests = {
+  learning: ["TanStack Start", "AI-powered coding tools (Cursor, Claude Code)", "Motion Design"],
+  personal: ["Swimming", "Music", "Graphic Design", "Travel", "Film", "Art"],
+};
+
 export interface Project {
   title: string;
   type: string;
@@ -202,9 +227,9 @@ export const projects: Project[] = [
     type: "Digital Identity",
     description: "My personal spot on the web, designed with a focus on typography, motion, and extreme attention to detail.",
     highlights: [
-      "Built with Astro and Svelte / TypeScript for maximum performance and developer experience",
-      "Custom fluid design system with system-aware dark/light mode support",
-      "Automated SEO optimization and high-fidelity motion design",
+      "Bespoke design system crafted from scratch to reflect a unique visual and technical identity",
+      "High-performance architecture built with Astro and Preact for near-instant interactions",
+      "Automated SEO optimization and semantic structure for maximum digital discoverability",
     ],
     github: "https://github.com/JaviVinnas/personal-site",
     isCurrent: true,
@@ -231,27 +256,4 @@ export const projects: Project[] = [
   },
 ];
 
-export const education = {
-  degree: "B.Sc. in Computer Engineering",
-  institution: "University of Santiago de Compostela (USC)",
-  graduated: "June 2022",
-};
 
-export const certifications = [
-  {
-    name: "AWS Certified Developer",
-    status: "In progress",
-  },
-];
-
-export const languages = [
-  { name: "Spanish", level: "Native" },
-  { name: "Galician", level: "Native" },
-  { name: "English", level: "B1 (Daily professional use)" },
-  { name: "French", level: "Elementary (A1 certified)" },
-];
-
-export const interests = {
-  learning: ["TanStack Start", "AI-powered coding tools (Cursor, Claude Code)", "Motion Design"],
-  personal: ["Swimming", "Music", "Graphic Design", "Travel", "Film", "Art"],
-};

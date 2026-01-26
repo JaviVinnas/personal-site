@@ -1,10 +1,10 @@
 ---
-import { personal, education, languages, interests } from "../../data/content";
+import { personal } from "../../data/content";
 ---
 
 <section id="contact" class="section-padding">
   <div class="container-main">
-    <div class="grid gap-12 lg:gap-16 lg:grid-cols-2">
+    <div class="max-w-3xl mx-auto">
       <!-- Contact Info -->
       <div>
         <!-- Label -->
@@ -32,12 +32,12 @@ import { personal, education, languages, interests } from "../../data/content";
         </p>
 
         <div
-          class="mt-8 lg:mt-12 space-y-0 will-animate animate-fade-in-up delay-300"
+          class="mt-8 lg:mt-12 grid grid-cols-1 md:grid-cols-2 gap-4 will-animate animate-fade-in-up delay-300"
         >
           <!-- Email -->
           <a
             href={`mailto:${personal.email}`}
-            class="group block w-full py-8 border-b border-subtle last:border-none hover:bg-subtle/30 transition-colors duration-300 focus-visible:outline-none"
+            class="group block p-8 border border-subtle rounded-2xl hover:bg-subtle/30 transition-all duration-300 focus-visible:outline-none md:col-span-1"
           >
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-4">
@@ -65,7 +65,7 @@ import { personal, education, languages, interests } from "../../data/content";
                 </h3>
               </div>
               <div
-                class="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-accent"
+                class="opacity-40 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300 text-accent"
               >
                 <svg
                   width="32"
@@ -94,7 +94,7 @@ import { personal, education, languages, interests } from "../../data/content";
             href={personal.social.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            class="group block w-full py-8 border-b border-subtle last:border-none hover:bg-subtle/30 transition-colors duration-300 focus-visible:outline-none"
+            class="group block p-8 border border-subtle rounded-2xl hover:bg-subtle/30 transition-all duration-300 focus-visible:outline-none md:col-span-1"
           >
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-4">
@@ -114,7 +114,7 @@ import { personal, education, languages, interests } from "../../data/content";
                 </h3>
               </div>
               <div
-                class="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-accent"
+                class="opacity-40 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300 text-accent"
               >
                 <svg
                   width="32"
@@ -143,7 +143,7 @@ import { personal, education, languages, interests } from "../../data/content";
             href={personal.social.github}
             target="_blank"
             rel="noopener noreferrer"
-            class="group block w-full py-8 border-b border-subtle hover:bg-subtle/30 transition-colors duration-300 focus-visible:outline-none"
+            class="group block p-8 border border-subtle rounded-2xl hover:bg-subtle/30 transition-all duration-300 focus-visible:outline-none md:col-span-2"
           >
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-4">
@@ -165,7 +165,7 @@ import { personal, education, languages, interests } from "../../data/content";
                 </h3>
               </div>
               <div
-                class="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-accent"
+                class="opacity-40 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300 text-accent"
               >
                 <svg
                   width="32"
@@ -188,52 +188,6 @@ import { personal, education, languages, interests } from "../../data/content";
               Browse my repositories
             </p>
           </a>
-        </div>
-      </div>
-
-      <!-- Additional Info -->
-      <div class="space-y-8 lg:pt-16">
-        <!-- Education -->
-        <div class="will-animate animate-fade-in-up delay-400">
-          <h3 class="text-label mb-3 pb-2 border-b border-border">Education</h3>
-          <p class="text-body-sm text-primary">{education.degree}</p>
-          <p class="text-body-sm text-secondary">{education.institution}</p>
-          <p class="text-label mt-1">Graduated {education.graduated}</p>
-        </div>
-
-        <!-- Languages -->
-        <div class="will-animate animate-fade-in-up delay-500">
-          <h3 class="text-label mb-3 pb-2 border-b border-border">Languages</h3>
-          <div class="space-y-2">
-            {
-              languages.map((lang) => (
-                <div class="flex justify-between items-baseline gap-4">
-                  <span class="text-body-sm text-primary">{lang.name}</span>
-                  <span class="text-label text-right">{lang.level}</span>
-                </div>
-              ))
-            }
-          </div>
-        </div>
-
-        <!-- Interests -->
-        <div class="will-animate animate-fade-in-up delay-600">
-          <h3 class="text-label mb-3 pb-2 border-b border-border">
-            Currently Learning
-          </h3>
-          <p class="text-body-sm text-secondary">
-            {interests.learning.join(" · ")}
-          </p>
-        </div>
-
-        <!-- Personal Interests -->
-        <div class="will-animate animate-fade-in-up delay-600">
-          <h3 class="text-label mb-3 pb-2 border-b border-border">
-            Beyond Code
-          </h3>
-          <p class="text-body-sm text-secondary">
-            {interests.personal.join(" · ")}
-          </p>
         </div>
       </div>
     </div>
