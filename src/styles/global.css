@@ -42,6 +42,15 @@
   --color-amber-muted: hsl(35, 30%, 75%);
   --color-highlight: hsl(50, 40%, 80%);
   --color-border: hsl(45, 15%, 85%);
+  
+  /* Badge text colors - higher contrast for accessibility */
+  --color-accent-badge: hsl(220, 55%, 40%);
+  --color-warm-badge: hsl(20, 50%, 42%);
+  --color-pink-badge: hsl(330, 50%, 40%);
+  --color-cyan-badge: hsl(190, 55%, 35%);
+  --color-emerald-badge: hsl(150, 50%, 35%);
+  --color-violet-badge: hsl(270, 50%, 45%);
+  --color-amber-badge: hsl(35, 60%, 38%);
 
   /* Animation Timing */
   --duration-fast: 150ms;
@@ -78,6 +87,15 @@
   --color-amber-muted: hsl(35, 30%, 45%);
   --color-highlight: hsl(220, 50%, 35%);
   --color-border: hsl(220, 12%, 25%);
+  
+  /* Badge text colors - higher contrast for accessibility */
+  --color-accent-badge: hsl(220, 60%, 75%);
+  --color-warm-badge: hsl(20, 55%, 72%);
+  --color-pink-badge: hsl(330, 55%, 75%);
+  --color-cyan-badge: hsl(190, 60%, 70%);
+  --color-emerald-badge: hsl(150, 55%, 68%);
+  --color-violet-badge: hsl(270, 55%, 78%);
+  --color-amber-badge: hsl(35, 65%, 70%);
 }
 
 /* ============================================
@@ -166,6 +184,15 @@ body {
 .text-emerald { color: var(--color-emerald); }
 .text-violet { color: var(--color-violet); }
 .text-amber { color: var(--color-amber); }
+
+/* Badge text colors - higher contrast */
+.text-accent-badge { color: var(--color-accent-badge); }
+.text-warm-badge { color: var(--color-warm-badge); }
+.text-pink-badge { color: var(--color-pink-badge); }
+.text-cyan-badge { color: var(--color-cyan-badge); }
+.text-emerald-badge { color: var(--color-emerald-badge); }
+.text-violet-badge { color: var(--color-violet-badge); }
+.text-amber-badge { color: var(--color-amber-badge); }
 
 .bg-base { background-color: var(--color-bg); }
 .bg-subtle { background-color: var(--color-bg-subtle); }

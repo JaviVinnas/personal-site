@@ -22,17 +22,17 @@ const skillName = typeof skill === "string" ? skill : skill.name;
 const skillUrl = typeof skill === "string" ? undefined : skill.url;
 
 const accentClasses = {
-  blue: "bg-accent/10 text-accent border-accent/20 dark:bg-accent/20 dark:border-accent/30",
-  warm: "bg-warm/10 text-warm border-warm/20 dark:bg-warm/20 dark:border-warm/30",
+  blue: "bg-accent/10 text-accent-badge border-accent/20 dark:bg-accent/20 dark:border-accent/30",
+  warm: "bg-warm/10 text-warm-badge border-warm/20 dark:bg-warm/20 dark:border-warm/30",
   neutral: "bg-muted/10 text-secondary border-border",
-  pink: "bg-pink/10 text-pink border-pink/20 dark:bg-pink/20 dark:border-pink/30",
-  cyan: "bg-cyan/10 text-cyan border-cyan/20 dark:bg-cyan/20 dark:border-cyan/30",
+  pink: "bg-pink/10 text-pink-badge border-pink/20 dark:bg-pink/20 dark:border-pink/30",
+  cyan: "bg-cyan/10 text-cyan-badge border-cyan/20 dark:bg-cyan/20 dark:border-cyan/30",
   emerald:
-    "bg-emerald/10 text-emerald border-emerald/20 dark:bg-emerald/20 dark:border-emerald/30",
+    "bg-emerald/10 text-emerald-badge border-emerald/20 dark:bg-emerald/20 dark:border-emerald/30",
   violet:
-    "bg-violet/10 text-violet border-violet/20 dark:bg-violet/20 dark:border-violet/30",
+    "bg-violet/10 text-violet-badge border-violet/20 dark:bg-violet/20 dark:border-violet/30",
   amber:
-    "bg-amber/10 text-amber border-amber/20 dark:bg-amber/20 dark:border-amber/30",
+    "bg-amber/10 text-amber-badge border-amber/20 dark:bg-amber/20 dark:border-amber/30",
 };
 
 const hoverClasses = {
