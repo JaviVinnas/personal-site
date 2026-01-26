@@ -4,7 +4,7 @@
 export const personal = {
   name: "Javier Rodríguez Viñas.",
   title: "Lead Frontend Engineer",
-  subtitle: "Fullstack Engineer & UX Specialist",
+  subtitle: "With Fullstack & Design expertise",
   tagline: "Bridging design and code",
   email: "javi.vinas.2000@gmail.com",
   phone: "+34 646 418 718",
@@ -17,13 +17,13 @@ export const personal = {
 };
 
 export const bio = {
-  short: "Software Engineer with 5 years of experience, specialized in Frontend and digital product development. Expert in bridging design and code, architecting scalable, high-performance interfaces and Design Systems.",
+  short: "Software Engineer who understands products from both design and implementation perspectives. 5 years building high-performance interfaces, Design Systems, and digital products that feel as good as they work.",
   full: [
-    "Software Engineer with 5 years of experience, specialized in **Frontend** and digital product development.",
-    "Expert in **bridging design and code**, architecting scalable, high-performance interfaces and **Design Systems**.",
-    "Solid **Fullstack** foundation (Node.js, Python, AWS) enabling a holistic view of development.",
-    "Passionate about building products that are not only technically robust but also intuitive and enjoyable for users.",
-    "Currently exploring applied AI in development and modern architectures (TanStack Start).",
+    "I approach products holistically, understanding both the **design intent** and the **technical constraints** that shape great experiences.",
+    "5 years specialized in **Frontend** and digital product development, architecting scalable interfaces and complete **Design Systems**.",
+    "Strong **Fullstack** foundation (Node.js, Python, AWS) that enables me to make informed decisions across the entire stack.",
+    "Obsessed with the details that make products feel polished: motion design, micro-interactions, and the subtle cues that guide users effortlessly.",
+    "Currently redefining my workflow with AI-native tools (Cursor, Claude Code) and exploring the architectural patterns for the next wave of software, where asynchronous agentic delegation becomes a core UX component. Also deep-diving into modern frameworks like TanStack Start.",
   ],
 };
 
@@ -48,11 +48,11 @@ export const experiences: Experience[] = [
     type: "remote",
     description: "Technical leadership of the frontend for an industrial data analytics platform (steel rolling mills) designed for plant operators and business-side users.",
     highlights: [
-      "Built from scratch a Next.js-based web platform connected to Big Data systems (Spark, Kafka, MinIO) for failure prediction",
-      "Implemented mission-critical real-time observability dashboards prioritizing stability and performance via React Query and SSR/caching optimizations",
-      "Designed in Figma and implemented an extensive custom design system (inspired by Shopify Polaris, built on shadcn/ui) using Radix UI and Tailwind CSS",
-      "Developed advanced micro-interactions and \"physical\" animations (replicating analog indicators) with Framer Motion and CSS",
-      "Defined CI/CD pipelines on AWS (GitHub Actions), testing strategies and long-term technical roadmap for the frontend",
+      "Built from scratch a Next.js platform interfacing (via REST APIs & WebSockets) with Big Data systems (Spark, Kafka, MinIO) for failure prediction and medium-term self-correction",
+      "Implemented real-time observability dashboards, solving the dual challenge of guiding user attention via subtle burst animations and meticulously managing performance to avoid saturating the React main thread. A consistently snappy experience was not an extra, but key for building user trust in the product",
+      "Designed and built a complete Design System (inspired by Shopify Polaris) using progressive disclosure: extremely powerful and expressive technical UI that never feels overwhelming",
+      "Developed 'physical' animations replicating analog control panels as a design nod to the industrial context this product aims to digitize",
+      "Built a type-safe, procedural system for generating complex data tables on demand (sorting, filtering via criteria pattern, pagination). The challenge wasn't just building tables, but enabling anyone (even coding agents) to spin up new ones effortlessly and consistently",
     ],
   },
   {
@@ -62,12 +62,12 @@ export const experiences: Experience[] = [
     period: "February 2022 → October 2023",
     location: "Hybrid (Vigo, ES)",
     type: "hybrid",
-    description: "Versatile role in the security division, spanning cryptography to mobile development.",
+    description: "Fullstack Engineer within the Cybersecurity division, collaborating extensively across both frontend and backend to build secure digital products.",
     highlights: [
-      "Implemented efficient data anonymization algorithms in Python (NumPy, Pandas)",
-      "Designed and developed a design system for an Android sovereign identity (SSI) app in Kotlin",
-      "Built and optimized security SPAs using React and Vue (Redux, Vuex, Webpack)",
-      "Mentored interns on frontend best practices, raising the team's code quality",
+      "Spearheaded the development of a Self-Sovereign Identity (SSI) Android application, managing the full vertical from the Kotlin implementation to the creation of a bespoke Design System",
+      "Collaborated on both frontend and backend architectures, narrowing the gap between security requirements and user experience",
+      "Implemented efficient data anonymization algorithms in Python backends (NumPy, Pandas) for sensitive datasets",
+      "Built and optimized security-critical SPAs using React and Vue, and mentored interns to raise the team's code quality standards",
     ],
   },
   {
@@ -77,10 +77,10 @@ export const experiences: Experience[] = [
     period: "June 2021 → August 2021",
     location: "Hybrid (Vigo, ES)",
     type: "hybrid",
-    description: "Frontend development for a data anonymization service (European Project Infinitech).",
+    description: "Productization of a powerful CLI-based data anonymization system (part of a European Cybersecurity Project) to make it accessible to external users.",
     highlights: [
-      "Designed and developed the frontend for a data anonymization service",
-      "Built a Vue and TypeScript SPA, significantly improving UX over the previous command-line solution",
+      "Designed the visual identity and implemented critical workflows in a Vue/TypeScript SPA, transforming a CLI-only tool into a modern web product",
+      "Significantly improved usability and visibility, enabling external stakeholders to leverage powerful data anonymization capabilities without technical friction",
     ],
   },
 ];
@@ -104,6 +104,7 @@ export const skillCategories: SkillCategory[] = [
       { name: "Next.js", url: "https://nextjs.org" },
       { name: "TypeScript", url: "https://www.typescriptlang.org" },
       { name: "Vue 3", url: "https://vuejs.org" },
+      { name: "Astro", url: "https://astro.build" },
       "HTML5",
       "CSS3",
       { name: "Preact", url: "https://preactjs.com" },
@@ -208,7 +209,7 @@ export const languages = [
 
 export const interests = {
   learning: ["TanStack Start", "AI-powered coding tools (Cursor, Claude Code)", "Motion Design"],
-  personal: ["Swimming", "Music", "Graphic Design", "Travel", "Film", "Art"],
+  personal: ["Swimming", "Music", "Graphic Design", "Travel", "Films", "Art"],
 };
 
 export interface Project {
@@ -227,7 +228,7 @@ export const projects: Project[] = [
     type: "Digital Identity",
     description: "My personal spot on the web, designed with a focus on typography, motion, and extreme attention to detail.",
     highlights: [
-      "Bespoke design system crafted from scratch to reflect a unique visual and technical identity",
+      "Bespoke design system crafted from scratch to establish a unique visual identity for myself as a professional",
       "High-performance architecture built with Astro and Preact for near-instant interactions",
       "Automated SEO optimization and semantic structure for maximum digital discoverability",
     ],
@@ -239,7 +240,7 @@ export const projects: Project[] = [
     type: "Technical Showcase",
     description: "Patient management app optimized for perceived performance.",
     highlights: [
-      "Implemented Next.js App Router with SSR and loading skeletons to avoid layout shifts",
+      "Implemented Next.js App Router with a composable skeleton strategy: each component exports its own skeleton, making complex loading states incrementally easy to build via standard React composition",
       "Custom design based on shadcn/ui for a functional, modern aesthetic that conveys calm",
     ],
     github: "https://github.com/JaviVinnas/technical-assignment-kannact",
@@ -247,10 +248,10 @@ export const projects: Project[] = [
   {
     title: "Time Artifacts",
     type: "Digital Product",
-    description: "Design and sell minimalist digital calendars as digital downloads.",
+    description: "Gumroad store featuring wall calendars I design and release annually.",
     highlights: [
-      "Playground project to experiment with UX/UI, typography and visual consistency",
-      "Exploration outside engineering constraints",
+      "Born from a personal need when I couldn't find a calendar that matched my aesthetic standards",
+      "Serves as a creative playground to explore typography and visual consistency, free from the constraints of software engineering",
     ],
     url: "https://timeartifacts.gumroad.com",
   },
