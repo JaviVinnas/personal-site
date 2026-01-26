@@ -456,3 +456,30 @@ body {
 .ambient-bg .orb {
   animation: float 25s ease-in-out infinite, breathe 10s ease-in-out infinite;
 }
+
+/* ============================================
+   VIEW TRANSITIONS - Theme Toggle
+   ============================================ */
+
+/* Disable default cross-fade to use custom circular wipe */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* Keep old state visible until new state wipes over it */
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+/* New state with custom animation (applied via JS) */
+::view-transition-new(root) {
+  z-index: 2;
+}
+
+/* Subtle blur during transition for smoother feel */
+::view-transition-group(root) {
+  animation-duration: 600ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}

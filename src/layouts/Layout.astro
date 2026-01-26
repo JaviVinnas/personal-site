@@ -1,4 +1,6 @@
 ---
+import { ViewTransitions } from "astro:transitions";
+
 interface Props {
   title?: string;
   description?: string;
@@ -58,6 +60,9 @@ import ThemeToggle from "../components/ThemeToggle.tsx";
       href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
+
+    <!-- View Transitions -->
+    <ViewTransitions />
 
     <!-- Dark mode script (runs before paint to prevent flash) -->
     <script is:inline>

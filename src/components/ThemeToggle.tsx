@@ -26,16 +26,63 @@ export default function ThemeToggle() {
     }
   }, []);
 
-  const toggleTheme = () => {
+  const toggleTheme = async (event: MouseEvent) => {
     const newIsDark = !isDark;
-    setIsDark(newIsDark);
-    if (newIsDark) {
+    
+    // Check if browser supports View Transitions API
+    if (!document.startViewTransition) {
+      // Fallback for browsers without View Transitions
+      setIsDark(newIsDark);
+      if (newIsDark) {
         document.documentElement.classList.add('dark');
         localStorage.setItem('theme', 'dark');
-    } else {
+      } else {
         document.documentElement.classList.remove('dark');
         localStorage.setItem('theme', 'light');
+      }
+      return;
     }
+
+    // Get the click position from the button
+    const button = event.currentTarget as HTMLElement;
+    const rect = button.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+
+    // Calculate the maximum distance to cover entire viewport
+    const maxRadius = Math.hypot(
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y)
+    );
+
+    // Start the view transition with circular reveal
+    const transition = document.startViewTransition(() => {
+      setIsDark(newIsDark);
+      if (newIsDark) {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      }
+    });
+
+    // Apply circular wipe animation
+    await transition.ready;
+    
+    document.documentElement.animate(
+      {
+        clipPath: [
+          `circle(0px at ${x}px ${y}px)`,
+          `circle(${maxRadius}px at ${x}px ${y}px)`
+        ]
+      },
+      {
+        duration: 600,
+        easing: 'cubic-bezier(0.16, 1, 0.3, 1)', // ease-out-expo from design system
+        pseudoElement: '::view-transition-new(root)'
+      }
+    );
   };
 
   return (

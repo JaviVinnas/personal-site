@@ -12,11 +12,11 @@ const delay = 200 + index * 150;
 ---
 
 <article
-  class="timeline-item grid gap-4 md:gap-8 will-animate animate-fade-in-up"
+  class="grid grid-cols-1 md:grid-cols-[24px_1fr] gap-4 md:gap-8 will-animate animate-fade-in-up"
   style={`animation-delay: ${delay}ms`}
 >
   <!-- Timeline visual (left column on desktop) -->
-  <div class="timeline-visual hidden md:flex flex-col items-center">
+  <div class="relative hidden md:flex flex-col items-center">
     <!-- Line -->
     <div class={`w-px h-6 ${index === 0 ? "bg-bg-subtle" : "bg-border"}`}></div>
     <!-- Node -->
@@ -27,7 +27,7 @@ const delay = 200 + index * 150;
   </div>
 
   <!-- Content -->
-  <div class="timeline-content pb-10 md:pb-12">
+  <div class="pb-10 md:pb-12">
     <!-- Mobile timeline indicator -->
     <div class="flex items-center gap-3 mb-3 md:hidden">
       <div class="w-2.5 h-2.5 rounded-full border-2 border-accent bg-border">
@@ -86,19 +86,3 @@ const delay = 200 + index * 150;
     </ul>
   </div>
 </article>
-
-<style>
-  .timeline-item {
-    grid-template-columns: 1fr;
-  }
-
-  @media (min-width: 768px) {
-    .timeline-item {
-      grid-template-columns: 24px 1fr;
-    }
-  }
-
-  .timeline-visual {
-    position: relative;
-  }
-</style>
