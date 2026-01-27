@@ -11,7 +11,7 @@ interface SpotifyData {
 }
 
 export default function SpotifyNowPlaying() {
-  const [data, setData] = useState<SpotifyData | null>(null);
+  const [data, setData] = useState<Readonly<SpotifyData> | null>(null);
   const [loading, setLoading] = useState(true);
   const [isExpanded, setExpanded] = useState(false);
 
