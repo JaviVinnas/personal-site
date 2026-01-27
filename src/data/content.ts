@@ -250,7 +250,7 @@ export const projects: Project[] = [
     type: "Digital Product",
     description: "Gumroad store featuring wall calendars I design and release annually.",
     highlights: [
-      "Born from a personal need when I couldn't find a calendar that matched my aesthetic standards",
+      "Born from a personal need when I couldn't find a wall calendar that truly resonated with me",
       "Serves as a creative playground to explore typography and visual consistency, free from the constraints of software engineering",
     ],
     url: "https://timeartifacts.gumroad.com",
