@@ -15,6 +15,8 @@ export default function SpotifyNowPlaying() {
   const [loading, setLoading] = useState(true);
   const [isExpanded, setExpanded] = useState(false);
 
+  const isIntegrationEnabled = import.meta.env.PUBLIC_ENABLE_SPOTIFY === "true";
+
   // Handlers for hover/click interaction to ensure robustness on both Desktop and Mobile
   const handleMouseEnter = () => setExpanded(true);
   const handleMouseLeave = () => setExpanded(false);
@@ -28,6 +30,11 @@ export default function SpotifyNowPlaying() {
   };
 
   useEffect(() => {
+    if (!isIntegrationEnabled) {
+      setLoading(false);
+      return;
+    }
+
     const fetchData = async () => {
       try {
         const response = await fetch(`${import.meta.env.BASE_URL}/api/now-playing`);
@@ -46,12 +53,12 @@ export default function SpotifyNowPlaying() {
 
     fetchData();
     // Poll every 30 seconds
-    const interval = setInterval(fetchData, 30000);
+    const interval = setInterval(fetchData, 30_000);
 
     return () => clearInterval(interval);
   }, []);
 
-  if (loading || !data?.isPlaying) return null;
+  if (!isIntegrationEnabled || loading || !data?.isPlaying) return null;
 
   return (
     <div 
