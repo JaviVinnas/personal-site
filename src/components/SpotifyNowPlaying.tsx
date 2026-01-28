@@ -37,7 +37,8 @@ export default function SpotifyNowPlaying() {
 
     const fetchData = async () => {
       try {
-        const response = await fetch(`${import.meta.env.BASE_URL}/api/now-playing`);
+        const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, "");
+        const response = await fetch(`${baseUrl}/api/now-playing`);
         if (response.ok) {
            const result = await response.json();
            setData(result);
