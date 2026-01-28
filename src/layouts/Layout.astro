@@ -31,7 +31,10 @@ import SpotifyNowPlaying from "../components/SpotifyNowPlaying.tsx";
     <link rel="icon" href={import.meta.env.BASE_URL + "/favicon.ico"} />
 
     <!-- Canonical URL -->
-    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <link
+      rel="canonical"
+      href={new URL(Astro.url.pathname, Astro.site ?? Astro.url)}
+    />
 
     <!-- SEO Meta -->
     <title>{title}</title>
@@ -44,7 +47,10 @@ import SpotifyNowPlaying from "../components/SpotifyNowPlaying.tsx";
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={new URL(Astro.url.pathname, Astro.site)} />
+    <meta
+      property="og:url"
+      content={new URL(Astro.url.pathname, Astro.site ?? Astro.url)}
+    />
     <meta property="og:locale" content="en_US" />
     <!-- <meta property="og:image" content={new URL("/og-image.jpg", Astro.site)} /> -->
 
