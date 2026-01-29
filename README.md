@@ -2,6 +2,8 @@
 
 This is my personal corner on the web, built with [Astro](https://astro.build/).
 
+You can visit the live site at [https://jvinas.vercel.app/](https://jvinas.vercel.app/).
+
 ## 🚀 Current Status
 
 Currently, this site primarily serves as my **online resume**. Here you can find information about my professional experience, skills, and projects I've worked on.
