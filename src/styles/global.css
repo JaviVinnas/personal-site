@@ -237,6 +237,28 @@ body {
   }
 }
 
+@keyframes fade-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-out-right {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+}
+
 @keyframes float {
   0%, 100% { transform: translate(0, 0); }
   33% { transform: translate(15px, -15px); }
@@ -253,6 +275,20 @@ body {
 
 .animate-scale-in {
   animation: scale-in var(--duration-slow) var(--ease-out-expo) forwards;
+}
+
+/* Initial state for entrance so the element stays hidden during animation-delay */
+.origin-fade-in-right {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.animate-fade-in-right {
+  animation: fade-in-right var(--duration-slow) var(--ease-out-expo) forwards;
+}
+
+.animate-fade-out-right {
+  animation: fade-out-right var(--duration-normal) var(--ease-out-expo) forwards;
 }
 
 @keyframes pulse {

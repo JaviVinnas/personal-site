@@ -1,5 +1,9 @@
+import { useEffect, useRef, useState } from "preact/hooks";
 
-import { useEffect, useState } from "preact/hooks";
+const ENTER_DURATION_MS = 500;
+const EXIT_DURATION_MS = 300;
+
+type VisibilityState = "hidden" | "entering" | "visible" | "exiting";
 
 interface SpotifyData {
   isPlaying: boolean;
@@ -14,8 +18,11 @@ export default function SpotifyNowPlaying() {
   const [data, setData] = useState<Readonly<SpotifyData> | null>(null);
   const [loading, setLoading] = useState(true);
   const [isExpanded, setExpanded] = useState(false);
+  const [visibilityState, setVisibilityState] = useState<VisibilityState>("hidden");
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const isIntegrationEnabled = import.meta.env.PUBLIC_ENABLE_SPOTIFY === "true";
+  const shouldShow = isIntegrationEnabled && !loading && !!data?.isPlaying;
 
   // Handlers for hover/click interaction to ensure robustness on both Desktop and Mobile
   const handleMouseEnter = () => setExpanded(true);
@@ -59,11 +66,49 @@ export default function SpotifyNowPlaying() {
     return () => clearInterval(interval);
   }, []);
 
-  if (!isIntegrationEnabled || loading || !data?.isPlaying) return null;
+  useEffect(() => {
+    if (shouldShow && (visibilityState === "hidden" || visibilityState === "exiting")) {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
+      setVisibilityState("entering");
+      timeoutRef.current = setTimeout(() => {
+        timeoutRef.current = null;
+        setVisibilityState("visible");
+      }, ENTER_DURATION_MS);
+    } else if (!shouldShow && (visibilityState === "visible" || visibilityState === "entering")) {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
+      setVisibilityState("exiting");
+      timeoutRef.current = setTimeout(() => {
+        timeoutRef.current = null;
+        setVisibilityState("hidden");
+      }, EXIT_DURATION_MS);
+    }
+
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
+    };
+  }, [shouldShow, visibilityState]);
+
+  if (visibilityState === "hidden") return null;
+
+  const animationClass =
+    visibilityState === "entering"
+      ? "origin-fade-in-right animate-fade-in-right delay-500"
+      : visibilityState === "exiting"
+        ? "animate-fade-out-right"
+        : "";
 
   return (
-    <div 
-      className="fixed bottom-4 right-4 z-50 flex items-center justify-end group"
+    <div
+      className={`fixed bottom-4 right-4 z-50 flex items-center justify-end group ${animationClass}`.trim()}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       data-expanded={isExpanded}
