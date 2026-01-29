@@ -147,6 +147,18 @@ function useDebouncedExpandCollapse(
     setExpanded(true);
   }, []);
 
+  const toggle = useCallback(() => {
+    if (expandTimeoutRef.current) {
+      clearTimeout(expandTimeoutRef.current);
+      expandTimeoutRef.current = null;
+    }
+    if (collapseTimeoutRef.current) {
+      clearTimeout(collapseTimeoutRef.current);
+      collapseTimeoutRef.current = null;
+    }
+    setExpanded((prev) => !prev);
+  }, []);
+
   useEffect(() => {
     return () => {
       if (expandTimeoutRef.current) {
@@ -160,7 +172,7 @@ function useDebouncedExpandCollapse(
     };
   }, []);
 
-  return { isExpanded, handleMouseEnter, handleMouseLeave, expandOnce };
+  return { isExpanded, handleMouseEnter, handleMouseLeave, expandOnce, toggle };
 }
 
 function AlbumArt({
@@ -255,7 +267,7 @@ function SpotifyWidgetStyles() {
 export default function SpotifyNowPlaying() {
   const { data, shouldShow } = useNowPlaying();
   const visibilityState = useVisibilityTransition(shouldShow);
-  const { isExpanded, handleMouseEnter, handleMouseLeave, expandOnce } =
+  const { isExpanded, handleMouseEnter, handleMouseLeave, toggle } =
     useDebouncedExpandCollapse();
 
   if (visibilityState === "hidden") return null;
@@ -263,12 +275,9 @@ export default function SpotifyNowPlaying() {
   const animationClass = getVisibilityAnimationClass(visibilityState);
   const containerClass = `fixed bottom-4 right-4 z-50 flex items-center justify-end group ${animationClass}`.trim();
 
-  const handleClick = (e: MouseEvent) => {
-    if (!isExpanded) {
-      e.preventDefault();
-      expandOnce();
-    }
-  };
+  const discAriaLabel = isExpanded
+    ? "Ocultar detalles de la canción"
+    : "Mostrar detalles de la canción";
 
   return (
     <div
@@ -277,11 +286,7 @@ export default function SpotifyNowPlaying() {
       onMouseLeave={handleMouseLeave}
       data-expanded={isExpanded}
     >
-      <a
-        href={data!.songUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        onClick={handleClick as JSX.GenericEventHandler<HTMLAnchorElement>}
+      <div
         className={`
           relative flex items-center flex-row-reverse gap-0
           bg-bg-subtle/95 backdrop-blur-xl
@@ -294,12 +299,26 @@ export default function SpotifyNowPlaying() {
           group-data-[expanded=true]:pl-5 group-data-[expanded=true]:bg-bg-subtle
         `}
         style={{ maxWidth: "100%" }}
-        aria-label={`Now playing: ${data!.title} by ${data!.artist}`}
       >
-        <AlbumArt albumImageUrl={data!.albumImageUrl} album={data!.album} />
-        <TrackInfo title={data!.title} artist={data!.artist} />
+        <button
+          type="button"
+          onClick={toggle}
+          aria-label={discAriaLabel}
+          className="shrink-0 p-0 border-0 bg-transparent cursor-pointer rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+        >
+          <AlbumArt albumImageUrl={data!.albumImageUrl} album={data!.album} />
+        </button>
+        <a
+          href={data!.songUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="min-w-0 hover:text-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset focus-visible:rounded"
+          aria-label={`Abrir ${data!.title} por ${data!.artist} en Spotify`}
+        >
+          <TrackInfo title={data!.title} artist={data!.artist} />
+        </a>
         <EqualizerBars />
-      </a>
+      </div>
       <SpotifyWidgetStyles />
     </div>
   );
