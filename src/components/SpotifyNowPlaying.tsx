@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "preact/hooks";
 
 const ENTER_DURATION_MS = 500;
 const EXIT_DURATION_MS = 300;
+const EXPAND_DEBOUNCE_MS = 60;
+const COLLAPSE_DEBOUNCE_MS = 120;
 
 type VisibilityState = "hidden" | "entering" | "visible" | "exiting";
 
@@ -20,18 +22,45 @@ export default function SpotifyNowPlaying() {
   const [isExpanded, setExpanded] = useState(false);
   const [visibilityState, setVisibilityState] = useState<VisibilityState>("hidden");
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const expandTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const collapseTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const isIntegrationEnabled = import.meta.env.PUBLIC_ENABLE_SPOTIFY === "true";
   const shouldShow = isIntegrationEnabled && !loading && !!data?.isPlaying;
 
-  // Handlers for hover/click interaction to ensure robustness on both Desktop and Mobile
-  const handleMouseEnter = () => setExpanded(true);
-  const handleMouseLeave = () => setExpanded(false);
+  // Debounced hover handlers to avoid enter/leave loops from reflow (e.g. hover from right)
+  const handleMouseEnter = () => {
+    if (collapseTimeoutRef.current) {
+      clearTimeout(collapseTimeoutRef.current);
+      collapseTimeoutRef.current = null;
+    }
+    if (expandTimeoutRef.current) return;
+    expandTimeoutRef.current = setTimeout(() => {
+      expandTimeoutRef.current = null;
+      setExpanded(true);
+    }, EXPAND_DEBOUNCE_MS);
+  };
+
+  const handleMouseLeave = () => {
+    if (expandTimeoutRef.current) {
+      clearTimeout(expandTimeoutRef.current);
+      expandTimeoutRef.current = null;
+    }
+    if (collapseTimeoutRef.current) return;
+    collapseTimeoutRef.current = setTimeout(() => {
+      collapseTimeoutRef.current = null;
+      setExpanded(false);
+    }, COLLAPSE_DEBOUNCE_MS);
+  };
 
   // On mobile/touch: Tap once to expand, Tap again to navigate
   const handleClick = (e: MouseEvent) => {
     if (!isExpanded) {
       e.preventDefault();
+      if (collapseTimeoutRef.current) {
+        clearTimeout(collapseTimeoutRef.current);
+        collapseTimeoutRef.current = null;
+      }
       setExpanded(true);
     }
   };
@@ -64,6 +93,19 @@ export default function SpotifyNowPlaying() {
     const interval = setInterval(fetchData, 30_000);
 
     return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (expandTimeoutRef.current) {
+        clearTimeout(expandTimeoutRef.current);
+        expandTimeoutRef.current = null;
+      }
+      if (collapseTimeoutRef.current) {
+        clearTimeout(collapseTimeoutRef.current);
+        collapseTimeoutRef.current = null;
+      }
+    };
   }, []);
 
   useEffect(() => {
@@ -120,14 +162,14 @@ export default function SpotifyNowPlaying() {
         onClick={handleClick as any}
         className={`
           relative flex items-center flex-row-reverse gap-0
-          bg-bg-subtle/80 backdrop-blur-xl
+          bg-bg-subtle/95 backdrop-blur-xl
           border border-border/60 shadow-lg
           p-1.5 rounded-full overflow-hidden
           transition-all duration-500 ease-out-expo
           ring-1 ring-white/5
           pl-1.5
-          group-hover:pl-5 group-hover:bg-bg-subtle/95
-          data-[expanded=true]:pl-5 data-[expanded=true]:bg-bg-subtle/95
+          group-hover:pl-5 group-hover:bg-bg-subtle
+          group-data-[expanded=true]:pl-5 group-data-[expanded=true]:bg-bg-subtle
         `}
         style={{ maxWidth: '100%' }}
         aria-label={`Now playing: ${data.title} by ${data.artist}`}
@@ -156,7 +198,7 @@ export default function SpotifyNowPlaying() {
             transition-all duration-500 ease-out-quart
             w-0 opacity-0 mr-0
             group-hover:w-[160px] group-hover:opacity-100 group-hover:mr-3
-            data-[expanded=true]:w-[160px] data-[expanded=true]:opacity-100 data-[expanded=true]:mr-3
+            group-data-[expanded=true]:w-[160px] group-data-[expanded=true]:opacity-100 group-data-[expanded=true]:mr-3
           `}
         >
           <span className="text-xs font-medium text-text truncate leading-tight tracking-tight">
@@ -170,11 +212,11 @@ export default function SpotifyNowPlaying() {
         {/* Animated Equalizer Bars - Visible when collapsed */}
         <div
           className={`
-            flex items-end gap-[2px] h-3
-            transition-all duration-300 ease-out
+            flex items-end gap-[2px] h-3 min-w-0 overflow-hidden
+            transition-[width,opacity,margin] duration-300 ease-out
             w-[20px] opacity-100 m-2
-            group-hover:w-0 group-hover:opacity-0 group-hover:hidden group-hover:m-0
-            data-[expanded=true]:w-0 data-[expanded=true]:opacity-0 data-[expanded=true]:hidden data-[expanded=true]:m-0
+            group-hover:w-0 group-hover:opacity-0 group-hover:m-0
+            group-data-[expanded=true]:w-0 group-data-[expanded=true]:opacity-0 group-data-[expanded=true]:m-0
           `}
         >
           <span className="w-[3px] bg-accent rounded-sm animate-music-bar-1" />

@@ -82,7 +82,9 @@ import Star from "../icons/Star.astro";
                   <div class="space-y-4">
                     {certifications.map((cert) => (
                       <div>
-                        <p class="text-body-sm text-primary">{cert.name}</p>
+                        <h4 class="text-body text-primary font-medium">
+                          {cert.name}
+                        </h4>
                         <p class="font-mono text-xs text-muted mt-0.5">
                           {cert.status}
                         </p>
