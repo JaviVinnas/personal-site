@@ -115,12 +115,22 @@ function useDebouncedExpandCollapse(
   const expandTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const collapseTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const handleMouseEnter = useCallback(() => {
+  const clearTimeouts = () => {
+    if (expandTimeoutRef.current) {
+      clearTimeout(expandTimeoutRef.current);
+      expandTimeoutRef.current = null;
+    }
     if (collapseTimeoutRef.current) {
       clearTimeout(collapseTimeoutRef.current);
       collapseTimeoutRef.current = null;
     }
-    if (expandTimeoutRef.current) return;
+  };
+
+  const handleMouseEnter = useCallback(() => {
+    // Ignore on touch devices to prevent synthetic mouse events logic
+    if (typeof window !== "undefined" && window.matchMedia("(hover: none)").matches) return;
+
+    clearTimeouts();
     expandTimeoutRef.current = setTimeout(() => {
       expandTimeoutRef.current = null;
       setExpanded(true);
@@ -128,51 +138,20 @@ function useDebouncedExpandCollapse(
   }, [expandMs]);
 
   const handleMouseLeave = useCallback(() => {
-    if (expandTimeoutRef.current) {
-      clearTimeout(expandTimeoutRef.current);
-      expandTimeoutRef.current = null;
-    }
-    if (collapseTimeoutRef.current) return;
+    if (typeof window !== "undefined" && window.matchMedia("(hover: none)").matches) return;
+
+    clearTimeouts();
     collapseTimeoutRef.current = setTimeout(() => {
       collapseTimeoutRef.current = null;
       setExpanded(false);
     }, collapseMs);
   }, [collapseMs]);
 
-  const expandOnce = useCallback(() => {
-    if (collapseTimeoutRef.current) {
-      clearTimeout(collapseTimeoutRef.current);
-      collapseTimeoutRef.current = null;
-    }
-    setExpanded(true);
-  }, []);
-
-  const toggle = useCallback(() => {
-    if (expandTimeoutRef.current) {
-      clearTimeout(expandTimeoutRef.current);
-      expandTimeoutRef.current = null;
-    }
-    if (collapseTimeoutRef.current) {
-      clearTimeout(collapseTimeoutRef.current);
-      collapseTimeoutRef.current = null;
-    }
-    setExpanded((prev) => !prev);
-  }, []);
-
   useEffect(() => {
-    return () => {
-      if (expandTimeoutRef.current) {
-        clearTimeout(expandTimeoutRef.current);
-        expandTimeoutRef.current = null;
-      }
-      if (collapseTimeoutRef.current) {
-        clearTimeout(collapseTimeoutRef.current);
-        collapseTimeoutRef.current = null;
-      }
-    };
+    return clearTimeouts;
   }, []);
 
-  return { isExpanded, handleMouseEnter, handleMouseLeave, expandOnce, toggle };
+  return { isExpanded, handleMouseEnter, handleMouseLeave, setExpanded };
 }
 
 function AlbumArt({
@@ -267,17 +246,39 @@ function SpotifyWidgetStyles() {
 export default function SpotifyNowPlaying() {
   const { data, shouldShow } = useNowPlaying();
   const visibilityState = useVisibilityTransition(shouldShow);
-  const { isExpanded, handleMouseEnter, handleMouseLeave, toggle } =
+  const { isExpanded, handleMouseEnter, handleMouseLeave, setExpanded } =
     useDebouncedExpandCollapse();
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    // If not expanded, always expand first (mobile key interaction)
+    if (!isExpanded) {
+      e.preventDefault();
+      setExpanded(true);
+      return;
+    }
+
+    // Check if mobile/touch device
+    const isMobile = window.matchMedia("(hover: none)").matches;
+
+    // If expanded and on mobile
+    if (isMobile) {
+      const target = e.target as HTMLElement;
+      // If clicking the album art (or its container), collapse instead of navigating
+      if (target.closest('[data-part="album-art"]')) {
+        e.preventDefault();
+        setExpanded(false);
+        return;
+      }
+      // If clicking text, let it navigate
+    }
+
+    // Desktop expanded: let it navigate
+  };
 
   if (visibilityState === "hidden") return null;
 
   const animationClass = getVisibilityAnimationClass(visibilityState);
   const containerClass = `fixed bottom-4 right-4 z-50 flex items-center justify-end group ${animationClass}`.trim();
-
-  const discAriaLabel = isExpanded
-    ? "Ocultar detalles de la canción"
-    : "Mostrar detalles de la canción";
 
   return (
     <div
@@ -286,7 +287,11 @@ export default function SpotifyNowPlaying() {
       onMouseLeave={handleMouseLeave}
       data-expanded={isExpanded}
     >
-      <div
+      <a
+        href={data!.songUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={handleClick}
         className={`
           relative flex items-center flex-row-reverse gap-0
           bg-bg-subtle/95 backdrop-blur-xl
@@ -297,28 +302,21 @@ export default function SpotifyNowPlaying() {
           pl-1.5
           group-hover:pl-5 group-hover:bg-bg-subtle
           group-data-[expanded=true]:pl-5 group-data-[expanded=true]:bg-bg-subtle
+          no-underline cursor-pointer
         `}
         style={{ maxWidth: "100%" }}
+        aria-label={`Reproduciendo ${data!.title} por ${data!.artist}. Haz clic para abrir en Spotify.`}
       >
-        <button
-          type="button"
-          onClick={toggle}
-          aria-label={discAriaLabel}
-          className="shrink-0 p-0 border-0 bg-transparent cursor-pointer rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+        <div 
+          className="shrink-0 z-10"
+          data-part="album-art"
         >
           <AlbumArt albumImageUrl={data!.albumImageUrl} album={data!.album} />
-        </button>
-        <a
-          href={data!.songUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="min-w-0 hover:text-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset focus-visible:rounded"
-          aria-label={`Abrir ${data!.title} por ${data!.artist} en Spotify`}
-        >
-          <TrackInfo title={data!.title} artist={data!.artist} />
-        </a>
+        </div>
+        
+        <TrackInfo title={data!.title} artist={data!.artist} />
         <EqualizerBars />
-      </div>
+      </a>
       <SpotifyWidgetStyles />
     </div>
   );
