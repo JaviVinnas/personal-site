@@ -1,3 +1,4 @@
+import type { JSX } from "preact";
 import { useCallback, useEffect, useRef, useState } from "preact/hooks";
 
 const SPOTIFY_WIDGET_TIMING = {
@@ -162,13 +163,17 @@ function AlbumArt({
   album: string;
 }) {
   return (
-    <div className="relative w-10 h-10 shrink-0 overflow-hidden rounded-full border border-border/80 z-10 bg-bg shadow-sm">
-      <img
-        src={albumImageUrl}
-        alt={album}
-        className="w-full h-full object-cover animate-spin-vinyl"
+    <div className="relative isolate w-10 h-10 shrink-0 overflow-hidden rounded-full border border-border/80 z-10 bg-bg shadow-sm">
+      <div
+        className="spin-vinyl-disc absolute inset-0 animate-spin-vinyl"
         style={{ animationDuration: "6s" }}
-      />
+      >
+        <img
+          src={albumImageUrl}
+          alt={album}
+          className="h-full w-full object-cover"
+        />
+      </div>
       <div className="absolute inset-0 bg-bg-subtle/20 mix-blend-overlay pointer-events-none" />
       <div className="absolute inset-0 bg-linear-to-tr from-transparent via-white/20 to-transparent pointer-events-none rounded-full" />
       <div className="absolute inset-0 m-auto w-2.5 h-2.5 bg-bg-subtle rounded-full border border-border/80 shadow-[inset_0_1px_2px_rgba(0,0,0,0.2)]" />
@@ -232,6 +237,13 @@ function SpotifyWidgetStyles() {
       .animate-music-bar-2 { animation: music-bar 0.7s ease-in-out 0.1s infinite; }
       .animate-music-bar-3 { animation: music-bar 0.9s ease-in-out 0.2s infinite; }
       
+      /* Clip on the same layer as transform: WebKit ignores ancestor overflow+radius on composited descendants. */
+      .spin-vinyl-disc {
+        -webkit-clip-path: circle(50% at 50% 50%);
+        clip-path: circle(50% at 50% 50%);
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+      }
       .animate-spin-vinyl {
         animation: spin-vinyl 6s linear infinite;
       }
@@ -249,7 +261,7 @@ export default function SpotifyNowPlaying() {
   const { isExpanded, handleMouseEnter, handleMouseLeave, setExpanded } =
     useDebouncedExpandCollapse();
 
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleClick = (e: JSX.TargetedMouseEvent<HTMLAnchorElement>) => {
     // If not expanded, always expand first (mobile key interaction)
     if (!isExpanded) {
       e.preventDefault();

@@ -20,11 +20,11 @@ export default defineConfig({
       enabled: true,
     },
   }),
-  build: {
-    sourcemap: true,
-  },
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+    build: {
+      sourcemap: true,
+    },
   },
 
   integrations: [sitemap(), preact()]

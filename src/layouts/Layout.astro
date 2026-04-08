@@ -1,5 +1,5 @@
 ---
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 
 interface Props {
   title?: string;
@@ -65,8 +65,8 @@ import Analytics from "@vercel/analytics/astro";
       rel="stylesheet"
     />
 
-    <!-- View Transitions -->
-    <ViewTransitions />
+    <!-- Client-side routing and view transitions -->
+    <ClientRouter />
 
     <!-- Dark mode script (runs before paint to prevent flash) -->
     <script is:inline>
