@@ -9,4 +9,4 @@ export { default as Email } from './Email.astro';
 export { default as Education } from './Education.astro';
 export { default as Globe } from './Globe.astro';
 export { default as Star } from './Star.astro';
-export { default as Astro } from './Astro.astro';
+export { default as AstroIcon } from './AstroIcon.astro';

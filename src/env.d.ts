@@ -1,5 +1,10 @@
 /// <reference path="../.astro/types.d.ts" />
 
+declare module "*.astro" {
+  const component: import("astro/runtime/server/index.js").AstroComponentFactory;
+  export default component;
+}
+
 interface ImportMetaEnv {
   readonly SPOTIFY_CLIENT_ID: string;
   readonly SPOTIFY_CLIENT_SECRET: string;
